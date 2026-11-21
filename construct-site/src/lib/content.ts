@@ -1,13 +1,105 @@
-import type { Locale } from "@core-initiative/common/config";
+import type { BrandId, Locale } from "@core-initiative/common/config";
 
-export const content: Record<Locale, { introduction: string }> = {
+export interface Copy {
+  metaTitle: string; introduction: string;
+  nav: { approach: string; services: string; family: string; contact: string; skip: string; language: string };
+  hero: { eyebrow: string; title: string[]; text: string; primary: string; secondary: string; note: string; scroll: string };
+  bridge: { title: string[]; text: string };
+  unfold: { label: string; hint: string; title: string[]; text: string; layers: string[]; handoff: string[]; handoffText: string };
+  services: { eyebrow: string; title: string[]; text: string; items: { title: string; text: string; detail: string }[] };
+  example: { eyebrow: string; title: string[]; text: string; note: string; atelier: string; headline: string[]; caption: string; imageAlt: string; tags: string[] };
+  process: { eyebrow: string; title: string[]; items: { title: string; text: string }[] };
+  family: { label: string; hint: string; title: string[]; text: string; signature: string; eyebrow: string; heading: string[]; introduction: string; brands: { id: BrandId; area: string; text: string }[]; workLabel: string; workNote: string; portfolioLink: string };
+  contact: { eyebrow: string; title: string[]; text: string; name: string; email: string; business: string; optional: string; message: string; placeholder: string; submit: string; previewSubmit: string; note: string; previewNote: string; ready: string; draftReady: string; copy: string; copied: string; subject: string; enable: string };
+  footer: { line: string; top: string };
+}
+
+export const content: Record<Locale, Copy> = {
   nl: {
-    introduction: "We ontwerpen en bouwen digitale omgevingen. Van de eerste structuur tot een website of webshop waarin vorm en techniek samenkomen.",
+    metaTitle: "Construct — Webstudio voor websites en webshops",
+    introduction: "Construct is een webstudio voor onafhankelijke merken en ondernemingen. Websites en webshops met aandacht voor karakter, gebruik en techniek. Onderdeel van Core Initiative.",
+    nav: { approach: "Onze blik", services: "Wat we maken", family: "De familie", contact: "Laten we praten", skip: "Naar de inhoud", language: "Kies je taal" },
+    hero: { eyebrow: "Webstudio · Websites & e-commerce", title: ["Een eigen plek", "op het web."], text: "Voor ondernemingen met een eigen karakter. We vertalen wat je doet naar een website die bij je past.", primary: "Vertel ons je idee", secondary: "Ontdek onze blik", note: "Een webstudio binnen Core Initiative", scroll: "Een andere blik begint hier" },
+    bridge: { title: ["Jouw werk heeft karakter.", "Je website mag dat ook hebben."], text: "Een atelier, een zelfstandige praktijk, een eigen merk. We beginnen bij wat jouw onderneming bijzonder maakt. Van daaruit bouwen we verder." },
+    unfold: { label: "Onder het oppervlak", hint: "Een idee krijgt ruimte", title: ["Eenvoud aan de buitenkant.", "Aandacht in elke laag."], text: "Verhaal, ontwerp en techniek vormen samen één ervaring.", layers: ["Het verhaal", "De structuur", "De ervaring", "De verbinding"], handoff: ["Een helder verhaal.", "Een doordachte wereld."], handoffText: "Een website die je werk begrijpelijk maakt en mensen helpt de volgende stap te zetten." },
+    services: { eyebrow: "Wat we maken", title: ["Van eerste indruk", "tot volgende stap."], text: "Een digitale plek moet iets voor je onderneming betekenen. Samen bepalen we wat daarvoor nodig is.", items: [
+      { title: "Websites met eigenheid", text: "Een herkenbare plek voor je werk, je verhaal en de mensen die je wilt bereiken.", detail: "Structuur, ontwerp en ontwikkeling" },
+      { title: "Webshops met aandacht", text: "Van een goed gepresenteerd product tot een overzichtelijke route naar bestellen.", detail: "Productervaring, winkel en integraties" },
+      { title: "Ruimte om verder te bouwen", text: "Een boeking, een koppeling of een eigen toepassing. We denken mee over wat je website daarna nodig heeft.", detail: "Uitbreidingen en maatwerk met Tool" }
+    ] },
+    example: { eyebrow: "Een mogelijke vertaling", title: ["Van materiaal", "naar gevoel op een scherm."], text: "Denk aan een keramiekatelier. Het licht, de textuur en de aandacht van de maker bepalen ook het ritme van de website.", note: "Conceptstudie · fictief atelier · AI-gegenereerd beeld · geen klantproject", atelier: "Atelier / Keramiek", headline: ["Gevormd met de hand.", "Gemaakt om te blijven."], caption: "Objecten voor het dagelijkse leven.", imageAlt: "Drie handgemaakte keramische objecten in blauw en krijtwit, in zacht daglicht op een stenen tafel. Gegenereerd beeld voor een conceptstudie.", tags: ["Art direction", "Productverhaal", "Webshop"] },
+    process: { eyebrow: "Zo kijken we naar een project", title: ["Eerst begrijpen.", "Dan vormgeven."], items: [
+      { title: "De kern vinden", text: "Wat maak je, voor wie, en wat moet je website mogelijk maken? Daar begint het gesprek." },
+      { title: "Karakter vertalen", text: "We geven inhoud, beeld en interactie een gezamenlijke richting. Het ontwerp groeit vanuit jouw onderneming." },
+      { title: "Zorgvuldig bouwen", text: "We brengen het ontwerp tot leven, met aandacht voor mobiel gebruik, toegankelijkheid en een vindbare inhoud." }
+    ] },
+    family: { label: "De verbinding", hint: "Een eigen vorm. Een gedeelde oorsprong.", title: ["Eigen karakter.", "Gedeelde oorsprong."], text: "Construct is de webstudio binnen Core Initiative.", signature: "Core Initiative / Een verbonden familie", eyebrow: "Er is meer achter het vierkant", heading: ["Een eigen discipline.", "Een groter geheel."], introduction: "Core Initiative brengt software, ontwerp en creatieve productie samen. Zes specialistische richtingen, elk met een eigen karakter. Construct geeft jouw onderneming een plek op het web; de andere disciplines bieden ruimte wanneer een idee verder reikt.", brands: [
+      { id: "construct", area: "Web & e-commerce", text: "De plek waar verhaal, ontwerp en techniek samen een website of webshop worden. Je bent hier." },
+      { id: "cookie", area: "Merk & digitaal ontwerp", text: "Identiteit, gevoel en interactie. De visuele wereld die een onderneming herkenbaar maakt." },
+      { id: "tool", area: "Software & systemen", text: "Maatwerksoftware en de structuur daarachter. Voor ideeën die verder gaan dan een website: toepassingen, koppelingen en samenwerkende systemen." },
+      { id: "agent", area: "AI & automatisering", text: "Een richting voor AI-toepassingen en samenwerkende agents, met aandacht voor het werk dat ze ondersteunen." },
+      { id: "reflection", area: "Vindbaarheid & inhoud", text: "Een richting voor zoekzichtbaarheid en heldere, bruikbare inhoud. Zodat wat je doet ook gevonden en begrepen kan worden." },
+      { id: "spoon", area: "Creatieve werkplaats", text: "Ruimte voor beeld, muziek, video, games en kleine creatieve tools. Een plek om te maken, te spelen en te onderzoeken." }
+    ], workLabel: "Uit het werk van onze makers", workNote: "Mind Palace en AI Team zijn eigen projecten van Yiğit Doğan. Ze laten iets zien van de productwereld achter Core Initiative.", portfolioLink: "Bekijk het project" },
+    contact: { eyebrow: "Het begint met een gesprek", title: ["Waar werk", "jij aan?"], text: "Vertel ons over je onderneming, een idee of iets dat beter kan. Een eerste schets is genoeg.", name: "Je naam", email: "E-mailadres", business: "Onderneming", optional: "optioneel", message: "Je idee", placeholder: "Wat doe je, en wat zou je willen maken?", submit: "Maak een e-mail", previewSubmit: "Bekijk je bericht", note: "Dit opent een concept in je e-mailapp. Je verstuurt het bericht zelf.", previewNote: "Je kunt je bericht hier voorbereiden en kopiëren. Er wordt niets verzonden.", ready: "Je bericht staat klaar om te kopiëren.", draftReady: "Je e-mailapp is geopend. Nog niet verstuurd? Je kunt het bericht ook hieronder kopiëren.", copy: "Kopieer bericht", copied: "Bericht gekopieerd", subject: "Een idee voor Construct", enable: "Schakel JavaScript in om een bericht voor te bereiden." },
+    footer: { line: "Websites met karakter. Onderdeel van Core Initiative.", top: "Terug naar boven" }
   },
   en: {
-    introduction: "We design and build digital environments. From the first structure to a website or online store where design and technology come together.",
+    metaTitle: "Construct — A web studio for websites & e-commerce",
+    introduction: "Construct is a web studio for independent brands and businesses. Websites and online stores shaped around character, experience and engineering. Part of Core Initiative.",
+    nav: { approach: "Our perspective", services: "What we make", family: "The family", contact: "Let's talk", skip: "Skip to content", language: "Choose your language" },
+    hero: { eyebrow: "Web studio · Websites & e-commerce", title: ["Your own place", "on the web."], text: "For businesses with a character of their own. We turn what you do into a website that feels like you.", primary: "Tell us your idea", secondary: "Explore our perspective", note: "A web studio within Core Initiative", scroll: "A different perspective starts here" },
+    bridge: { title: ["Your work has character.", "Your website can, too."], text: "A workshop, an independent practice, a brand of your own. We begin with what makes your business yours. Then we build from there." },
+    unfold: { label: "Beneath the surface", hint: "An idea finds its space", title: ["Simple on the surface.", "Considered in every layer."], text: "Story, design and engineering become one experience.", layers: ["The story", "The structure", "The experience", "The connection"], handoff: ["A clear story.", "A considered world."], handoffText: "A website that makes your work easy to understand and helps people take the next step." },
+    services: { eyebrow: "What we make", title: ["From first impression", "to next step."], text: "A digital space should do something useful for your business. Together, we work out what that takes.", items: [
+      { title: "Websites with character", text: "A recognisable place for your work, your story and the people you want to reach.", detail: "Structure, design and development" },
+      { title: "Considered online stores", text: "From a thoughtfully presented product to a clear path towards placing an order.", detail: "Product experience, commerce and integrations" },
+      { title: "Room to build further", text: "A booking flow, an integration or a custom application. We think through what your website needs next.", detail: "Extensions and custom software with Tool" }
+    ] },
+    example: { eyebrow: "One possible translation", title: ["From material", "to a feeling on screen."], text: "Imagine a ceramics atelier. The light, the texture and the maker's care also shape the rhythm of its website.", note: "Concept study · fictional atelier · AI-generated imagery · not a client project", atelier: "Atelier / Ceramics", headline: ["Shaped by hand.", "Made to stay."], caption: "Objects for everyday life.", imageAlt: "Three handmade ceramic vessels in blue and chalk white, in soft daylight on a stone table. Generated imagery for a concept study.", tags: ["Art direction", "Product storytelling", "E-commerce"] },
+    process: { eyebrow: "How we approach a project", title: ["Understand first.", "Then give it form."], items: [
+      { title: "Find the core", text: "What do you make, who is it for, and what should your website make possible? That is where the conversation starts." },
+      { title: "Translate the character", text: "Content, imagery and interaction find a shared direction. The design grows from your business." },
+      { title: "Build with care", text: "We bring the design to life, considering mobile use, accessibility and content that can be discovered." }
+    ] },
+    family: { label: "The connection", hint: "A distinct shape. A shared origin.", title: ["Distinct character.", "A shared origin."], text: "Construct is the web studio within Core Initiative.", signature: "Core Initiative / A connected family", eyebrow: "There is more behind the square", heading: ["A discipline of its own.", "Part of something wider."], introduction: "Core Initiative brings software, design and creative production together. Six specialist directions, each with its own character. Construct gives your business a place on the web; the other disciplines make room for ideas that reach further.", brands: [
+      { id: "construct", area: "Web & e-commerce", text: "Where story, design and engineering become a website or online store. You are here." },
+      { id: "cookie", area: "Brand & digital design", text: "Identity, feeling and interaction. The visual world that makes a business recognisable." },
+      { id: "tool", area: "Software & systems", text: "Custom software and the structure behind it. For ideas beyond a website: applications, integrations and connected systems." },
+      { id: "agent", area: "AI & automation", text: "A direction for AI applications and collaborating agents, shaped around the work they support." },
+      { id: "reflection", area: "Visibility & content", text: "A direction for search visibility and clear, useful content. Helping what you do become discoverable and understandable." },
+      { id: "spoon", area: "Creative workshop", text: "Space for images, music, video, games and small creative tools. A place to make, play and explore." }
+    ], workLabel: "From the work of our makers", workNote: "Mind Palace and AI Team are independent projects by Yiğit Doğan. A glimpse of the product world behind Core Initiative.", portfolioLink: "Explore the project" },
+    contact: { eyebrow: "It starts with a conversation", title: ["What are you", "working on?"], text: "Tell us about your business, an idea or something that could work better. A rough outline is enough.", name: "Your name", email: "Email address", business: "Business", optional: "optional", message: "Your idea", placeholder: "What do you do, and what would you like to make?", submit: "Prepare an email", previewSubmit: "Preview your message", note: "This opens a draft in your email app. You send the message yourself.", previewNote: "Prepare and copy your message here. Nothing is sent.", ready: "Your message is ready to copy.", draftReady: "Your email app has been opened. If you still need it, you can copy the message below.", copy: "Copy message", copied: "Message copied", subject: "An idea for Construct", enable: "Enable JavaScript to prepare a message." },
+    footer: { line: "Websites with character. Part of Core Initiative.", top: "Back to the top" }
   },
   tr: {
-    introduction: "Dijital ortamlar tasarlıyor ve geliştiriyoruz. İlk yapıdan, tasarımla teknolojinin bir araya geldiği web sitelerine ve mağazalara uzanan bir üretim süreci.",
-  },
+    metaTitle: "Construct — Web siteleri ve e-ticaret için bir web stüdyosu",
+    introduction: "Construct, bağımsız markalar ve işletmeler için bir web stüdyosu. Karakteri, kullanımı ve tekniği özenle düşünülmüş web siteleri ve mağazalar. Core Initiative ailesinden.",
+    nav: { approach: "Bakışımız", services: "Neler üretiyoruz", family: "Aile", contact: "Konuşalım", skip: "İçeriğe geç", language: "Dilini seç" },
+    hero: { eyebrow: "Web stüdyosu · Web siteleri ve e-ticaret", title: ["Web'de kendine", "ait bir yer."], text: "Kendine ait bir karakteri olan işletmeler için. Yaptığın işi, seni yansıtan bir web deneyimine dönüştürüyoruz.", primary: "Fikrini anlat", secondary: "Bakışımızı keşfet", note: "Core Initiative ailesinden bir web stüdyosu", scroll: "Farklı bir bakış burada başlıyor" },
+    bridge: { title: ["İşinin bir karakteri var.", "Web sitenin de olabilir."], text: "Bir atölye, bağımsız bir uzman, kendi markan. İşletmeni sana özgü kılan şeyi anlamakla başlıyoruz. Sonra onun etrafında inşa ediyoruz." },
+    unfold: { label: "Yüzeyin altında", hint: "Bir fikir kendine alan buluyor", title: ["Yüzeyde sadelik.", "Her katmanda özen."], text: "Hikâye, tasarım ve yazılım tek bir deneyimde buluşuyor.", layers: ["Hikâye", "Yapı", "Deneyim", "Bağlantı"], handoff: ["Anlaşılır bir hikâye.", "Düşünülmüş bir dünya."], handoffText: "Yaptığın işi anlaşılır kılan, insanlara bir sonraki adımda yol gösteren bir web sitesi." },
+    services: { eyebrow: "Neler üretiyoruz", title: ["İlk izlenimden", "bir sonraki adıma."], text: "Dijital bir yerin işletmen için bir anlamı olmalı. Bunun için ne gerektiğini birlikte belirliyoruz.", items: [
+      { title: "Karakteri olan web siteleri", text: "İşin, hikâyen ve ulaşmak istediğin insanlar için sana ait bir yer.", detail: "Yapı, tasarım ve geliştirme" },
+      { title: "Özenle kurgulanmış mağazalar", text: "Ürünün iyi sunulmasından siparişe uzanan anlaşılır bir alışveriş deneyimi.", detail: "Ürün deneyimi, e-ticaret ve entegrasyonlar" },
+      { title: "Gelişmeye açık bir yapı", text: "Bir rezervasyon akışı, entegrasyon ya da özel uygulama. Web sitenin sonraki ihtiyacını da birlikte düşünürüz.", detail: "Tool ile geliştirmeler ve özel yazılım" }
+    ] },
+    example: { eyebrow: "Bir olasılığın taslağı", title: ["Malzemeden", "ekrandaki hisse."], text: "Bir seramik atölyesi düşün. Işık, doku ve üreticinin gösterdiği özen, web sitesinin ritmine de yön verebilir.", note: "Konsept çalışma · kurgusal atölye · AI ile üretilmiş görsel · müşteri projesi değildir", atelier: "Atölye / Seramik", headline: ["Elde şekillendi.", "Kalmak için üretildi."], caption: "Gündelik hayat için nesneler.", imageAlt: "Taş bir masa üzerinde yumuşak gün ışığında, mavi ve tebeşir beyazı üç el yapımı seramik. Konsept çalışma için üretilmiş görsel.", tags: ["Sanat yönetimi", "Ürün hikâyesi", "E-ticaret"] },
+    process: { eyebrow: "Bir projeye nasıl bakıyoruz", title: ["Önce anlamak.", "Sonra biçim vermek."], items: [
+      { title: "Özünü bulmak", text: "Ne üretiyorsun, kimin için ve web siten neyi mümkün kılmalı? Konuşma burada başlıyor." },
+      { title: "Karakteri aktarmak", text: "İçerik, görsel ve etkileşim ortak bir yön buluyor. Tasarım, işletmenin içinden doğuyor." },
+      { title: "Özenle inşa etmek", text: "Mobil kullanımı, erişilebilirliği ve bulunabilir içeriği düşünerek tasarımı hayata geçiriyoruz." }
+    ] },
+    family: { label: "Bağlantı", hint: "Kendine ait bir biçim. Ortak bir köken.", title: ["Kendine ait karakter.", "Ortak bir köken."], text: "Construct, Core Initiative ailesinin web stüdyosu.", signature: "Core Initiative / Birbirine bağlı bir aile", eyebrow: "Karenin arkasında daha fazlası var", heading: ["Kendi uzmanlığı.", "Daha büyük bir bütün."], introduction: "Core Initiative; yazılım, tasarım ve yaratıcı üretimi bir araya getiriyor. Her biri kendi karakterine sahip altı uzmanlık alanı. Construct işletmene web'de bir yer kurarken, diğer disiplinler daha ileri uzanan fikirlere alan açıyor.", brands: [
+      { id: "construct", area: "Web ve e-ticaret", text: "Hikâye, tasarım ve tekniğin bir web sitesine ya da mağazaya dönüştüğü yer. Şu an buradasın." },
+      { id: "cookie", area: "Marka ve dijital tasarım", text: "Kimlik, his ve etkileşim. Bir işletmeyi tanınır kılan görsel dünya." },
+      { id: "tool", area: "Yazılım ve sistemler", text: "Özel yazılım ve arkasındaki yapı. Web sitesinin ötesine uzanan fikirler için uygulamalar, entegrasyonlar ve birlikte çalışan sistemler." },
+      { id: "agent", area: "AI ve otomasyon", text: "Desteklediği işi merkeze alan AI uygulamaları ve birlikte çalışan agent'lar için bir uzmanlık alanı." },
+      { id: "reflection", area: "Görünürlük ve içerik", text: "Aramada görünürlük, anlaşılır ve yararlı içerik için bir uzmanlık alanı. Yaptığın işin bulunabilmesi ve anlaşılabilmesi için." },
+      { id: "spoon", area: "Yaratıcı atölye", text: "Görsel, müzik, video, oyun ve küçük yaratıcı araçlar için bir alan. Üretmek, oynamak ve araştırmak için bir yer." }
+    ], workLabel: "Üretenlerin dünyasından", workNote: "Mind Palace ve AI Team, Yiğit Doğan'ın bağımsız projeleri. Core Initiative'in arkasındaki ürün dünyasına bir bakış.", portfolioLink: "Projeyi keşfet" },
+    contact: { eyebrow: "Bir konuşmayla başlıyor", title: ["Sen neyin", "üzerinde çalışıyorsun?"], text: "İşletmenden, bir fikrinden ya da daha iyi olabileceğini düşündüğün bir şeyden bahset. İlk taslak yeterli.", name: "Adın", email: "E-posta adresin", business: "İşletmen", optional: "isteğe bağlı", message: "Fikrin", placeholder: "Ne yapıyorsun, ne üretmek istiyorsun?", submit: "E-posta hazırla", previewSubmit: "Mesajını önizle", note: "E-posta uygulamanda bir taslak açılır. Mesajı kendin gönderirsin.", previewNote: "Mesajını burada hazırlayıp kopyalayabilirsin. Hiçbir şey gönderilmez.", ready: "Mesajın kopyalamaya hazır.", draftReady: "E-posta uygulaman açıldı. Henüz göndermediysen mesajını aşağıdan da kopyalayabilirsin.", copy: "Mesajı kopyala", copied: "Mesaj kopyalandı", subject: "Construct için bir fikir", enable: "Mesajını hazırlamak için JavaScript’i etkinleştir." },
+    footer: { line: "Karakteri olan web siteleri. Core Initiative ailesinden.", top: "Başa dön" }
+  }
 };

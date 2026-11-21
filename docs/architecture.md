@@ -1,33 +1,45 @@
-# Starter architecture
+# Architecture and integration boundaries
 
-## Agreed direction
+## Implemented
 
-- One repository; each brand has a separate application directory and can be deployed independently.
-- Frontend: Next.js, React, and TypeScript.
-- Dutch by default, with English and Turkish versions.
-- Shared code and future unstyled form elements: `common/`.
-- Backend: ASP.NET Core. The first requirement is shared form intake and durable enquiry records.
-- A simple enquiry dashboard built with our own components, including manual entry for phone calls and direct emails.
-- No Supabase in the initial plan.
+One monorepo contains independent Next.js applications and shared configuration. Construct has a multilingual web studio frontend; Core remains an unstyled starter. Other brand applications have not been created.
+
+The page and scene markup are server-rendered. Small client components enhance scrolling, the elastic footer and the contact form. Construct owns its design tokens and local components. Native scrolling, reduced-motion support and cleanup of animation/input handlers are part of the current implementation.
 
 ```mermaid
 flowchart TD
-    Sites["Brand sites / Next.js"] --> Shared["common/config"]
-    Sites -. "Next stage" .-> API["Shared API / ASP.NET Core"]
-    Panel["Enquiry dashboard / planned"] -.-> API
-    Manual["Phone calls and direct email"] --> Panel
-    API --> DB["Durable enquiry records"]
-    DB --> Mail["Notifications after recording"]
+    Core["Core / Next.js starter"] --> Config["common/config / brands and locales"]
+    Construct["Construct / Next.js frontend"] --> Config
+    Construct --> Form["Contact form / implemented"]
+    Form --> Draft["Email draft or local preview / current"]
+    Form -. "Future API integration" .-> API["Shared ASP.NET Core contact API / planned"]
+    API -.-> Provider["Email provider / not selected"]
+    Provider -.-> Inbox["Configured shared inbox"]
 ```
 
-The API, dashboard, database, and email flow in this diagram are planned. The starter includes the two sites and shared config.
+Solid edges show current behavior; dashed edges show planned delivery. A prepared email draft is not a server submission or delivery confirmation.
 
-## Open decisions
+## Next operational slice
 
-- Database engine and hosting; PostgreSQL is a candidate.
-- Email provider, brand addresses, and shared inbox.
-- Dashboard authentication and enquiry statuses.
-- Shared component API and each site's style guide.
-- Seed of Life mark and the visual details connecting the brand family.
+A small ASP.NET Core API should receive and validate the originating brand, locale, visitor details, optional business, message and source path. Email credentials and recipient routing stay server-side. Configure a verified sender and set the visitor's address as Reply-To.
 
-Shared components can provide behavior and accessibility relationships. Fonts, colors, shadows, spacing, and motion belong to each brand's own styles. Component implementation is outside this initial setup.
+The proposed `/api/contact` contract is not implemented. Choose the provider, delivery acceptance semantics, request limits, basic spam protection and production hosting before connecting the frontend. Prefer one configured shared inbox initially. Decide whether the browser reaches the API through a same-origin route/rewrite or an explicitly allowed origin.
+
+Do not report success when provider handoff fails. A provider accepting a message does not prove inbox arrival. Define the client-facing response accordingly.
+
+## Deferred
+
+- Enquiry persistence, database selection and a team dashboard.
+- Retry jobs, mailbox synchronization and automated acknowledgement emails.
+- Other brand applications and shared unstyled form component extraction.
+- Production deployment, DNS and domain-based mailbox configuration.
+
+These can be introduced as actual requirements emerge. Supabase is not part of the current setup.
+
+## Brand and product boundaries
+
+Each brand controls its fonts, palette, spacing, composition and motion. A shared origin and specialist relationships connect the sites. The seven brand definitions are navigation/configuration data, not seven deployed applications.
+
+Mind Palace and AI Team link to their actual portfolio entries with attribution to their maker. The fictional ceramics concept is labelled separately from real products.
+
+Canonical URLs, reciprocal language alternates, Open Graph text, website structured data, robots and the sitemap are implemented in Construct. Visibility measurement and original service content remain ongoing work; connecting the brands is not treated as a ranking guarantee.

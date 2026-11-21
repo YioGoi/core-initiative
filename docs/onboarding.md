@@ -1,37 +1,58 @@
 # Quick onboarding
 
-Start with the root `README.md`. With Node and pnpm installed, run `pnpm install --frozen-lockfile`, then `pnpm dev` to start both applications.
+Read the root [README](../README.md), then run:
 
-## Files to explore first
+```sh
+nvm use
+pnpm install --frozen-lockfile
+pnpm dev:construct
+```
+
+Open http://localhost:3001/nl. English and Turkish are available at `/en` and `/tr`. The frontend runs without .NET, a database or external service accounts.
+
+## First tour
+
+1. Read the first screen and service sections to see Construct's offering.
+2. Scroll through the square unfolding into layers and its later connection to the seven-circle Core family.
+3. Open the family descriptions and portfolio links. The ceramics example is a labelled fictional concept, not a customer case study.
+4. At the bottom, keep scrolling down to reveal the moving particle field. Release to let the footer spring back. Upward scrolling stays native. Touch and keyboard gestures are supported; reduced-motion preferences disable the effect.
+5. Try the contact form. Without configuration it previews and copies a message. With an address configured it opens an email draft. Neither mode submits to a server.
+
+## Files to explore
 
 | File | Purpose |
 | --- | --- |
-| `common/config/index.ts` | Seven brands, target origins, and three locales |
-| `core-initiative-site/src/config/site.ts` | Core's site identity and origin |
-| `construct-site/src/config/site.ts` | Construct's site identity and origin |
-| `src/app/[locale]/page.tsx` in each application | Unstyled starter page |
-| `src/app/[locale]/layout.tsx` in each application | Required Next.js HTML/body shell and document language |
+| `common/config/index.ts` | Brand names, target origins and supported locales |
+| `construct-site/src/app/[locale]/page.tsx` | Server-rendered page, metadata, links and form integration |
+| `construct-site/src/lib/content.ts` | Typed Dutch, English and Turkish website copy |
+| `construct-site/src/app/globals.css` | Construct's local visual tokens and responsive styling |
+| `construct-site/src/components/scroll-experience.tsx` | Scroll scene enhancement and lifecycle cleanup |
+| `construct-site/src/components/motion-scenes.tsx` | Server-rendered scene markup |
+| `construct-site/src/components/elastic-footer.tsx` | Footer spring, input handling and particle canvas |
+| `construct-site/src/components/contact-form.tsx` | Contact fields and current email-draft/preview behavior |
+| `construct-site/src/app/sitemap.ts` | Localized discovery URLs |
+| `construct-site/src/app/robots.ts` | Crawler rules and sitemap location |
+| `construct-site/.env.example` | Optional public origin and recipient configuration |
+| `core-initiative-site/src/app/[locale]/page.tsx` | Umbrella site's starter page |
 
-## Current scope
+## Local contact configuration
 
-- Core and Construct run and build independently.
-- Dutch is the default language; English and Turkish routes also work.
-- Starter pages contain the brand name and a short introduction.
-- Shared components will live in `common/component/`. Form elements and style guides come later.
-- ASP.NET Core is the agreed backend technology. Backend implementation has not started; .NET and a database are not required to run this version.
+Copy `construct-site/.env.example` to `construct-site/.env.local` if needed. `NEXT_PUBLIC_CONTACT_EMAIL` is a public recipient address, not a credential. Leave it blank to use preview/copy mode. Restart the dev server after changing environment variables; production builds embed public values at build time.
 
-## Local configuration
+Never put email provider credentials into a `NEXT_PUBLIC_` variable. Keep `.env.local` out of commits.
 
-Environment variables are optional. For example, copy Core's `.env.example` to `.env.local` in the same directory. `NEXT_PUBLIC_SITE_ORIGIN` sets the origin used in that application's metadata; it contains no secret.
+## First backend integration
 
-Make application changes in the relevant site directory. Shared brand and locale definitions live in `common/config`. Run `pnpm check` from the repository root after code changes.
+The next piece is a small shared ASP.NET Core contact API. The backend project and endpoint do not exist yet. Keep the initial scope to receiving validated enquiries and handing their notifications to a selected email provider.
 
-## Deployment boundaries
+A candidate contract is `POST /api/contact` with brand, locale, name, email, optional business, message and source path. Final routes, limits, response semantics and hosting should be agreed before wiring the form. The current component is the frontend integration point; its draft/preview action can be replaced with an API request and explicit pending, success and failure states.
 
-The sites share a repository but can use separate deployment projects. Select the relevant application directory as the project root; installation uses the root workspace and lockfile. The shared `common/` dependency is included in the build.
+All brand forms should eventually route to a configured shared inbox. Persisted enquiries and a dashboard can follow when needed; they are not prerequisites for this first delivery flow.
 
-This starter is ready for source collaboration on GitHub. Domain, DNS, and production deployment connections have not been configured yet.
+See [architecture](architecture.md) for the boundaries. Shared unstyled form elements are planned under `common/component/`, but extraction has been deferred.
 
-## Language convention
+## Validation and deployment
 
-Keep documentation, comments, and development guidance in English. Dutch and Turkish website translations remain in their locale dictionaries.
+Run `pnpm check` from the repository root after application or shared-config changes. Use each application's directory as the deployment project root while retaining the workspace lockfile and shared dependency. Source collaboration is ready; production hosting, email delivery and DNS still need configuration.
+
+Keep repository documentation, comments and development guidance in English. Keep translated website content in its locale dictionary.
