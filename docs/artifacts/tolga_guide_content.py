@@ -1,147 +1,223 @@
-"""Agreed direction and explicitly open decisions for the Tolga brief."""
+"""Agreed direction and open decisions for the English project brief."""
 
-DATE = '20 Kasım 2026'
-SUBTITLE = 'Tolga için fikir ve mimari notları'
+DATE = '21 November 2026'
 
-BRANDS = [
-    ('Core Initiative', 'coreinitiative.nl', 'Ortak yaklaşım, uzmanlık haritası ve ürünlerin buluşma noktası.', '#355c50'),
-    ('Construct', 'construct.coreinitiative.nl', 'Web siteleri ve e-commerce deneyimleri.', '#496b8c'),
-    ('Cookie', 'cookie.coreinitiative.nl', 'Marka kimliği, arayüz ve dijital deneyim tasarımı.', '#b65270'),
-    ('Tool', 'tool.coreinitiative.nl', 'Özel yazılım, uygulamalar ve çalışan sistemler.', '#6a6389'),
-    ('Agent', 'agent.coreinitiative.nl', 'Birlikte çalışan AI ajanları, entegrasyon ve otomasyon.', '#317c7b'),
-    ('Reflection', 'reflection.coreinitiative.nl', 'SEO, AEO, içerik ve arama görünürlüğü.', '#877231'),
-    ('Spoon', 'spoon.coreinitiative.nl', 'Art, craft, müzik, video, görsel, oyun ve yaratıcı web araçları.', '#b96b43'),
-]
+SUBTITLE = 'Concept and architecture notes for Tolga'
 
-PAGES = [
-    {'title': 'Core Initiative ve altı uzmanlık', 'kicker': '01 / EVREN VE MARKA HARİTASI', 'blocks': [
-        ('lead', 'Merkezde Core Initiative, çevresinde altı butik uzmanlık var.'),
-        ('p', 'Her markanın kendi sitesi ve ruhu olacak. Ortak kök, aynı üretim anlayışı ve birbiriyle çalışan uzmanlıklar üzerinden hissedilecek. İsimler Matrix ve Tool evrenlerinden geliyor; yedi daireli ilişkiyi Seed of Life fikriyle kuruyoruz.'),
-        ('p', 'İlk hedef Hollanda’da küçük web ve yazılım ihtiyaçlarına ulaşmak; kendi ürünlerimizi geliştirirken görünürlüğü ve gelen ilgiyi ölçmek.'),
-        ('diagram', None),
-        ('brands', None),
-        ('note', 'Bugünkü durum: coreinitiative.nl satın alındı, yedi isim ve hedef subdomain yapısı seçildi. Rehber, kararlaştırdığımız yönü ve önerilen mimariyi anlatıyor. Geliştirme ve servis kurulumları başlangıç aşamasında.'),
-    ]},
-    {'title': 'Aynı aile, ayrı görsel dünyalar', 'kicker': '02 / SANAT YÖNETİMİ VE STYLE GUIDE', 'blocks': [
-        ('lead', 'Hedefimiz kurumsal güveni, butik karakteri ve üretme heyecanını birlikte hissettirmek. Her sitenin kendi sanat yönetimi olacak; aile hissini ortak birkaç belirgin ayrıntıyla kuracağız.'),
-        ('h', 'Kararlaştırılan görsel yaklaşım'),
-        ('ul', [
-            'Her marka için ayrı style guide: fontlar, renkler, grid, boşluklar, yüzeyler, gölgeler ve hareket dili.',
-            'Özellikle tasarım ve yaratıcı üretim tarafında güçlü geçişler ve düşünülmüş scroll anlatıları. Hareketler, yapılan işi ve markanın fikrini görünür kılacak.',
-            '<b>Construct:</b> Mavi-gri, yapısal, mekânsal ve maskülen bir başlangıç hissi.',
-            '<b>Cookie:</b> Kırmızıdan pembeye, sıcak, şefkatli, duyusal ve feminen bir başlangıç hissi.',
-        ]),
-        ('h', 'Aile standardı için öneri'),
-        ('table', (['Ortak kalabilecekler', 'Markaya özgü olanlar'], [
-            ['Core bağlantısı ve küçük aile imzası', 'Logo yorumu, tipografi ve renk paleti.'],
-            ['Dil seçimi ve iletişimde anlaşılır davranış', 'Sayfa kompozisyonu, navigasyon ve anlatım tonu.'],
-            ['Anlamlı tasarım token alanları', 'Boşluk ölçekleri, gölgeler, dokular ve köşe biçimleri.'],
-            ['Erişilebilirlik, mobil uyum ve performans standardı', 'Geçişler, scroll sahneleri ve etkileşim koreografisi.'],
-        ])),
-        ('p', 'Aynı küçük Core imzası ve “Part of Core Initiative” bağlantısı, farklı görsel dünyaları birbirine bağlayabilir. Seed of Life, ortak işaret sistemi için aday. Nihai logo ve ortak sabitler henüz tasarlanmadı.'),
-        ('note', 'Tasarım notu: Bir yön panosu, örnek ekran ve küçük bir style guide ile başlayıp aile hissini erken değerlendirebiliriz. Bu rehberdeki renkler sunum içindir; diğer markaların nihai paletlerini belirlemiyor.'),
-    ]},
-    {'title': 'Sitelerin arkasındaki ortak yapı', 'kicker': '03 / TEKNİK MİMARİ', 'blocks': [
-        ('lead', 'Next.js marka siteleri, ASP.NET Core ortak backend ve kendi componentlerimizle kuracağımız basit başvuru panosu. İlk aşamadaki hedef, gelen ilgiyi kaybetmeden tek yerde takip etmek.'),
-        ('architecture', None),
-        ('h', 'Kararlaştırılanlar'),
-        ('ul', [
-            '<b>Frontend:</b> Next.js. Varsayılan Hollandaca; İngilizce ve Türkçe sürümler.',
-            '<b>Backend:</b> ASP.NET Core. Ortak form kabulü, kayıt ve başvuru yönetimi için bir uygulama.',
-            '<b>Pano:</b> Kendi arayüzümüz; ekip girişiyle tablo, detay, not ve durum takibi.',
-            '<b>Altyapı yaklaşımı:</b> Başlangıç planında Supabase kullanmıyoruz.',
-        ]),
-        ('h', 'Uygulama düzeni için öneri'),
-        ('p', 'Backend içinde iletişim, başvurular ve mail işlemleri ayrı modüller olabilir. Marka siteleri API üzerinden bağlanır. Veritabanı motoru açık; PostgreSQL aday. Ayrı site/repo ve yayın projeleri, çalışma düzeni için öneri.'),
-        ('note', 'Diagram bir uygulama önerisidir. Posta kutusunun sağlayıcısı, veritabanı, hosting ve giriş yöntemi henüz seçilmedi. Node.js, özel araçlarda ihtiyaç doğarsa kullanılabilecek ikinci teknoloji.'),
-    ]},
-    {'title': 'Bir mesajdan takip edilebilir işe', 'kicker': '04 / FORM, E-POSTA VE BAŞVURU PANOSU', 'blocks': [
-        ('lead', 'Her marka üzerinden bize ulaşılabilir. Formlar ortak kayda akar; telefon ve doğrudan e-postayla gelen talepler ilk sürümde panoya elle eklenebilir.'),
-        ('h', 'Formun önerilen akışı'),
-        ('ol', [
-            'Ad, e-posta ve mesaj alınır; telefon isteğe bağlı olur. Marka, dil ve kaynak sayfa bilgisi kayda eklenir.',
-            'Sunucuda doğrulama ve temel spam kontrolü yapılır. Başvuru ile bildirim gönderme işi kalıcı olarak kaydedilir.',
-            'Kayıt başarılı olunca kullanıcıya alındığı söylenir. Bildirim gönderilir; geçici mail hatasında tekrar denenir.',
-        ]),
-        ('p', 'Aynı gönderimin tekrarlanmasını kontrol ederiz. Mail gönderimi başarısız olsa da talep panoda durur. Formdaki özel anahtarlar sunucuda tutulur; istekten gelen marka bilgisi tanımlı marka listesine göre doğrulanır.'),
-        ('h', 'Panonun ilk kapsamı'),
-        ('table', (['Tablo sütunları', 'Satıra girince'], [
-            ['Tarih, marka, kişi / işletme, kanal', 'Mesaj ve iletişim bilgileri.'],
-            ['Durum, ilgilenen kişi, takip tarihi', 'Not ekleme, durum ve takip tarihi değiştirme.'],
-            ['Marka / durum filtresi ve arama', 'Telefon veya e-posta için elle yeni kayıt açma.'],
-        ])),
-        ('p', '<b>Örnek durumlar:</b> Yeni / Görüşülüyor / Teklif verildi / Tamamlandı / Kapandı. Kesin durum adları ve bir işin proje takibine ne zaman geçeceği açık.'),
-        ('h', 'E-posta düzeni'),
-        ('ul', [
-            '<b>Marka adresleri:</b> construct@coreinitiative.nl, cookie@coreinitiative.nl gibi adresler. İlk etapta ortak gelen kutusu düşünülebilir.',
-            '<b>Form bildirimi:</b> Doğrulanmış kendi adresimizden gönderim; ziyaretçi adresi Reply-To olur. Alındı mesajı eklenmesi ayrıca değerlendirilebilir.',
-            '<b>İnsanların yazışması:</b> İlgili marka adresinden yanıt verebileceğimiz bir posta düzeni gerekir. Sağlayıcı ve gönderim servisi açık.',
-        ]),
-        ('note', 'İlk sürümde giriş ve yetki kontrolü yalnızca ekibe açık olur. Mail kutusu ile pano arasında otomatik konuşma eşleştirmesini, ihtiyaç ortaya çıkınca genişletebiliriz.'),
-    ]},
-    {'title': 'Ürünler, araçlar ve görünürlük', 'kicker': '05 / ÜRETİMDEN GÖRÜNÜRLÜĞE', 'blocks': [
-        ('lead', 'Kendi uygulamalarımız ve faydalı küçük araçlarımız bu yapıya üretim alanı açıyor. Burada geliştirdiğimiz deneyim ve ölçtüğümüz gerçek sonuçlar, zamanla müşterilere sunacağımız yöntemi besleyecek.'),
-        ('h', 'Ürünlerin yerleşimi için öneri'),
-        ('ul', [
-            '<a href="https://www.yigit-dogan.dev/projects#mind-palace"><u><b>Mind Palace</b></u></a>: Tool tarafında sergilenebilir; kendi ürün kimliğini korur.',
-            '<a href="https://www.yigit-dogan.dev/projects#ai-team"><u><b>AI Team</b></u></a>: Agent ile ilişkilendirilebilir; birlikte çalışan ajanlar fikrini somutlaştırır.',
-            '<b>Spoon:</b> Görsel, video, müzik, oyun ve yaratıcı web araçları için atölye. HTML’den görsel üretme, değerlendirilecek fikirlerden biri.',
-        ]),
-        ('p', 'Ürünlerin kullanıcıları, hesapları ve verileri kendi sınırlarında ele alınır. Ortak operasyon backend’iyle paylaşılacak servisleri ihtiyaç belirler. Uzun süren görsel veya video işleri için kuyruk, arka plan işlemi, dosya süresi ve kullanım sınırları ayrıca tasarlanabilir.'),
-        ('h', 'SEO ve AEO yaklaşımı'),
-        ('ul', [
-            'Her markanın kendi uzmanlığı, hedef kitlesi ve özgün içeriği olur. İlgili projeler ve uzmanlıklar arasında anlamlı bağlantılar kurulur.',
-            'Taranabilir içerik, sayfa başlıkları, canonical, sitemap, mobil performans ve dil sürümlerinin doğru eşleştirilmesi ortak teknik temeli oluşturur.',
-            'Bağlantılar keşif ve alaka sinyallerine katkı sağlayabilir. Yedi sitenin birbirine bağlanması tek başına otomatik sıralama avantajı sağlamaz. [1]',
-            'Google’ın AI arama özelliklerinde SEO temelleri geçerli. AEO çalışmasında açık cevaplar, güvenilir içerik ve anlaşılır uzmanlık sunumuna odaklanırız. [2]',
-        ]),
-        ('p', 'Google, sonuç çeşitliliği açısından subdomain’leri genellikle ana domain’in parçası sayar; aynı sorguda yedi ayrı yer kaplamayı varsayamayız. [1] Dil sürümlerini karşılıklı hreflang bağlantılarıyla eşleştirebiliriz. [3]'),
-        ('note', 'Ölçüm: Aramada bulunma, ziyaret, araç kullanımı ve iletişim başvurusu ayrı izlenir. Bir aracı kullanan ziyaretçi ile hizmet talep eden kişi farklı ihtiyaçlarla gelmiş olabilir.'),
-        ('references', [
-            ('[1] Google sıralama sistemleri', 'https://developers.google.com/search/docs/appearance/ranking-systems-guide'),
-            ('[2] Google AI arama rehberi', 'https://developers.google.com/search/docs/appearance/ai-features'),
-            ('[3] Dil sürümlerinin eşleştirilmesi', 'https://developers.google.com/search/docs/specialty/international/localized-versions'),
-        ]),
-    ]},
-    {'title': 'Açık teknik ve yaratıcı notlar', 'kicker': '06 / HENÜZ SEÇMEDİĞİMİZ AYRINTILAR', 'blocks': [
-        ('lead', 'Ana yön belli. Aşağıdaki parçalar henüz açık; Tolga’yla birlikte teknik tercihlere, maliyete ve çalışma biçimimize göre netleştirebiliriz.'),
-        ('table', (['Konu', 'Not'], [
-            ['Veritabanı', 'PostgreSQL aday. Motor, barınma, migration ve yedekleme yöntemi seçilecek. Kalıcı başvuru kaydı temel ihtiyaç.'],
-            ['Hosting ve yayın', 'Next.js için Vercel değerlendirilebilir. ASP.NET Core uygulamasının barınması ayrıca seçilecek. Domain satın alımı tamam; DNS ve yayın kurulumları sonraki iş.'],
-            ['E-posta', 'Marka adresleri, ortak kutu ve bu adreslerden yanıt verme. Otomatik gönderim için Resend bir aday; sağlayıcı seçilmedi.'],
-            ['Pano ve erişim', 'Giriş yöntemi, ekip hesapları, kesin durum adları, takip hatırlatmaları ve mesajların saklama süresi.'],
-            ['Tasarım standardı', 'Aile imzası ve ortak sabitler; marka fontları, paletleri, hareket yönleri ve Seed of Life işareti.'],
-            ['Çalışma düzeni', 'Repo sınırları, ortak parçalar, ilk yayın kapsamı ve içeriklerin nasıl güncelleneceği.'],
-        ])),
-        ('h', 'İlk sürümün sınırı'),
-        ('p', 'Uzmanlıkları anlatan siteler, ortak iletişim akışı ve basit başvuru panosu. Yeni talepleri kaçırmadan görmek ilk ihtiyacımız. Ürün altyapıları, gelişmiş mail entegrasyonları ve ağır yaratıcı araçlar kendi ihtiyaçlarıyla büyüyebilir.'),
-        ('h', 'İşletim için küçük ama önemli ayrıntılar'),
-        ('ul', [
-            'Geliştirme ve canlı ortamın ayrılması; özel anahtarların ve veriye erişimin yönetilmesi.',
-            'Hatalı gönderimlerin fark edilmesi, veritabanı yedeği ve geri yükleme yöntemi.',
-            'Hosting, e-posta, dosya ve AI kullanımının birlikte bütçelenmesi.',
-        ]),
-    ]},
-]
+BRANDS = [('Core Initiative',
+  'coreinitiative.nl',
+  'Shared direction, specialist brands, and products in one connected family.',
+  '#355c50'),
+ ('Construct', 'construct.coreinitiative.nl', 'Websites and e-commerce experiences.', '#496b8c'),
+ ('Cookie', 'cookie.coreinitiative.nl', 'Brand identity, interfaces, and digital experience design.', '#b65270'),
+ ('Tool', 'tool.coreinitiative.nl', 'Custom software, applications, and working systems.', '#6a6389'),
+ ('Agent', 'agent.coreinitiative.nl', 'Collaborating AI agents, integrations, and automation.', '#317c7b'),
+ ('Reflection', 'reflection.coreinitiative.nl', 'SEO, AEO, content, and search visibility.', '#877231'),
+ ('Spoon',
+  'spoon.coreinitiative.nl',
+  'Art, craft, music, video, images, games, and creative web tools.',
+  '#b96b43')]
 
-# All coordinates use a top-left origin. Both output formats share this diagram.
-ARCH = {
-    'width': 510, 'height': 246,
-    'nodes': [
-        ('sites', 0, 10, 146, 43, '7 marka sitesi', 'Next.js / NL · EN · TR', False),
-        ('api', 182, 10, 146, 43, 'Ortak API', 'ASP.NET Core', True),
-        ('db', 364, 10, 146, 43, 'Kalıcı kayıt', 'Veritabanı motoru açık', False),
-        ('phone', 0, 113, 146, 43, 'Telefon / e-posta', 'İlk sürümde elle kayıt', False),
-        ('panel', 182, 113, 146, 43, 'Başvuru panosu', 'Next.js / ekip girişi', False),
-        ('mailjob', 364, 113, 146, 43, 'Bildirim gönderimi', 'Kayıt sonrası / tekrar deneme', False),
-        ('inbox', 364, 198, 146, 43, 'Ekip posta kutusu', 'Sağlayıcı açık', False),
-    ],
-    'edges': [
-        ([(146,31.5),(182,31.5)], None),
-        ([(328,31.5),(364,31.5)], None),
-        ([(255,113),(255,53)], 'giriş + yetki'),
-        ([(146,134.5),(182,134.5)], None),
-        ([(437,53),(437,113)], 'kayıt sonrası'),
-        ([(437,156),(437,198)], None),
-    ],
-}
+PAGES = [{'title': 'Core Initiative and six specialist brands',
+  'kicker': '01 / CONCEPT AND BRAND MAP',
+  'blocks': [('lead', 'Core Initiative sits at the center of six boutique specialist brands.'),
+             ('p',
+              'Each brand has its own site and character. A shared origin, approach to making, and connected '
+              'areas of expertise bring the family together. The names draw on The Matrix and Tool; the '
+              'seven-circle relationship follows the Seed of Life idea.'),
+             ('p',
+              'The first goal is to reach people with small web and software needs in the Netherlands, while '
+              'developing our own products and measuring visibility and enquiries.'),
+             ('diagram', None),
+             ('brands', None),
+             ('note',
+              'Current status: coreinitiative.nl is registered. The seven names and target subdomains are '
+              'selected. The GitHub monorepo contains runnable Core and Construct starters and shared config. '
+              'Backend services and production deployment are planned.')]},
+ {'title': 'One family, distinct visual worlds',
+  'kicker': '02 / ART DIRECTION AND STYLE GUIDES',
+  'blocks': [('lead',
+              'We want the confidence of an established business, the character of a boutique studio, and the '
+              'energy of making things. Each site gets its own art direction, connected through a few '
+              'recognizable family details.'),
+             ('h', 'Agreed visual direction'),
+             ('ul',
+              ['A separate style guide for each brand: fonts, colors, grids, spacing, surfaces, shadows, and '
+               'motion.',
+               'Strong transitions and considered scroll narratives, especially for design and creative '
+               'production. Motion should express the work and the idea behind the brand.',
+               '<b>Construct:</b> Blue-gray, structural, spatial, and masculine as an initial direction.',
+               '<b>Cookie:</b> Red moving toward pink; warm, caring, sensory, and feminine as an initial '
+               'direction.']),
+             ('h', 'Proposed family standards'),
+             ('table',
+              (['Potential shared standards', 'Brand-specific decisions'],
+               [['Core link and a small family signature', 'Logo interpretation, typography, and palette.'],
+                ['Clear language selection and contact behavior',
+                 'Page composition, navigation, and tone of voice.'],
+                ['Meaningful design token names', 'Spacing scales, shadows, textures, and corner shapes.'],
+                ['Accessibility, mobile support, and performance',
+                 'Transitions, scroll scenes, and interaction choreography.']])),
+             ('p',
+              "A small Core signature and a 'Part of Core Initiative' link can connect the different visual "
+              'worlds. Seed of Life is a candidate for the shared mark. The final logo and shared visual '
+              'constants are still open.'),
+             ('note',
+              'Design note: a direction board, one sample screen, and a small style guide can help evaluate the '
+              'family resemblance early. The colors in this brief are presentation choices, not final palettes '
+              'for the other brands.')]},
+ {'title': 'Shared foundations behind the sites',
+  'kicker': '03 / TECHNICAL ARCHITECTURE',
+  'blocks': [('lead',
+              'Next.js brand sites, a shared ASP.NET Core backend, and a simple enquiry dashboard built with our '
+              'own components. The initial goal is to keep incoming interest visible in one place.'),
+             ('architecture', None),
+             ('h', 'Agreed decisions'),
+             ('ul',
+              ['<b>Frontend:</b> Next.js. Dutch by default, with English and Turkish versions.',
+               '<b>Backend:</b> ASP.NET Core. One application for shared form intake, records, and enquiry '
+               'management.',
+               '<b>Dashboard:</b> Our own interface, with team sign-in, a table, record details, notes, and '
+               'status tracking.',
+               '<b>Infrastructure:</b> No Supabase in the initial plan.']),
+             ('h', 'Application structure'),
+             ('p',
+              'One monorepo contains independent site applications and shared code in common/. Core and Construct '
+              'starters are implemented. The planned backend can separate contact intake, enquiries, and email '
+              'into modules. The database engine is open; PostgreSQL is a candidate.'),
+             ('note',
+              'This diagram shows the proposed operations flow. The backend, dashboard, database, and email '
+              'service are not implemented yet. Node.js remains an option for specialized tools when needed.')]},
+ {'title': 'From a message to a tracked enquiry',
+  'kicker': '04 / FORMS, EMAIL, AND THE DASHBOARD',
+  'blocks': [('lead',
+              'People can reach us through each brand. Forms feed a shared record; phone calls and direct emails '
+              'can be entered manually in the first version.'),
+             ('h', 'Proposed form flow'),
+             ('ol',
+              ['Collect name, email, and message; phone is optional. Include the originating brand, language, and '
+               'source page.',
+               'Validate on the server and apply basic spam controls. Persist the enquiry and the notification '
+               'job.',
+               'Confirm receipt after the record is saved. Send the notification and retry temporary email '
+               'failures.']),
+             ('p',
+              'Handle duplicate submissions. If email delivery fails, the enquiry remains in the dashboard. Keep '
+              'private keys on the server and validate the submitted brand against the configured brand '
+              'registry.'),
+             ('h', 'Initial dashboard scope'),
+             ('table',
+              (['Table columns', 'Record details and actions'],
+               [['Date, brand, person / business, channel', 'Message and contact information.'],
+                ['Status, owner, follow-up date', 'Add notes and update the status or follow-up date.'],
+                ['Brand / status filters and search', 'Add a record manually for a phone call or email.']])),
+             ('p',
+              '<b>Example statuses:</b> New / Discussing / Proposal sent / Completed / Closed. Final status names '
+              'and the point at which an enquiry becomes a project remain open.'),
+             ('h', 'Email setup'),
+             ('ul',
+              ['<b>Brand addresses:</b> construct@coreinitiative.nl, cookie@coreinitiative.nl, and similar '
+               'addresses. A shared inbox is an initial option.',
+               '<b>Form notifications:</b> Send from our own verified address and use the visitor address as '
+               'Reply-To. An acknowledgement email is an optional addition.',
+               '<b>Human correspondence:</b> We need to reply from the relevant brand address. The mailbox '
+               'provider and automated sending service are still open.']),
+             ('note',
+              'The first dashboard is restricted to the team through authentication and authorization. Automatic '
+              'matching between mailbox conversations and enquiry records can be added when needed.')]},
+ {'title': 'Products, tools, and visibility',
+  'kicker': '05 / FROM PRODUCTION TO DISCOVERY',
+  'blocks': [('lead',
+              'Our own applications and useful small tools give this structure a place to produce real work. What '
+              'we learn and the results we measure can feed the services we eventually offer clients.'),
+             ('h', 'Proposed product placement'),
+             ('ul',
+              ['<a href="https://www.yigit-dogan.dev/projects#mind-palace"><u><b>Mind Palace</b></u></a>: Can be '
+               'showcased through Tool while keeping its own product identity.',
+               '<a href="https://www.yigit-dogan.dev/projects#ai-team"><u><b>AI Team</b></u></a>: Can connect to '
+               'Agent and demonstrate the idea of collaborating agents.',
+               '<b>Spoon:</b> A workshop for images, video, music, games, and creative web tools. HTML-to-image '
+               'conversion is one idea to explore.']),
+             ('p',
+              'Product users, accounts, and data stay within their own boundaries. Shared operations services can '
+              'be introduced where useful. Long-running image or video work may need a queue, background '
+              'processing, file retention rules, and usage limits.'),
+             ('h', 'SEO and AEO approach'),
+             ('ul',
+              ['Each brand develops its own expertise, audience, and original content. Related projects and '
+               'services link to one another where useful.',
+               'Crawlable content, page titles, canonical URLs, sitemaps, mobile performance, and correctly '
+               'matched language versions form the shared technical foundation.',
+               'Links can support discovery and relevance signals. Connecting seven sites does not automatically '
+               'produce a ranking advantage. [1]',
+               'SEO fundamentals also apply to Google AI search features. For AEO, focus on clear answers, '
+               'reliable content, and understandable expertise. [2]']),
+             ('p',
+              'Google generally groups subdomains with the root domain for search-result diversity; we cannot '
+              'assume seven separate positions for the same query. [1] Match language versions with reciprocal '
+              'hreflang links. [3]'),
+             ('note',
+              'Measurement: track search visibility, visits, tool usage, and contact enquiries separately. A tool '
+              'user and a potential service client may arrive with different needs.'),
+             ('references',
+              [('[1] Google ranking systems',
+                'https://developers.google.com/search/docs/appearance/ranking-systems-guide'),
+               ('[2] Google AI search guidance',
+                'https://developers.google.com/search/docs/appearance/ai-features'),
+               ('[3] Matching language versions',
+                'https://developers.google.com/search/docs/specialty/international/localized-versions')])]},
+ {'title': 'Open technical and creative decisions',
+  'kicker': '06 / DETAILS STILL TO CHOOSE',
+  'blocks': [('lead',
+              'The main direction is set. These details remain open for discussion with Tolga, based on technical '
+              'preferences, cost, and how we want to work.'),
+             ('table',
+              (['Topic', 'Notes'],
+               [['Database',
+                 'PostgreSQL is a candidate. Choose the engine, hosting, migrations, and backup strategy. Durable '
+                 'enquiry records are the core requirement.'],
+                ['Hosting and deployment',
+                 'Vercel is an option for Next.js. ASP.NET Core hosting needs a separate choice. The domain is '
+                 'registered; DNS and production deployment come next.'],
+                ['Email',
+                 'Brand addresses, a shared inbox, and replies from those addresses. Resend is a candidate for '
+                 'automated sending; no provider is selected.'],
+                ['Dashboard and access',
+                 'Authentication method, team accounts, final status names, follow-up reminders, and message '
+                 'retention.'],
+                ['Design standards',
+                 'Family signature and shared constants; brand fonts, palettes, motion direction, and the Seed of '
+                 'Life mark.'],
+                ['Working structure',
+                 'The monorepo is established. Shared component contracts, initial publication scope, and content '
+                 'editing workflow are open.']])),
+             ('h', 'Scope of the first operational release'),
+             ('p',
+              'Sites explaining the specialisms, a shared contact flow, and a simple enquiry dashboard. The first '
+              'need is to notice and follow up on incoming interest. Product infrastructure, deeper email '
+              'integrations, and heavier creative tools can grow with their own requirements.'),
+             ('h', 'Small operational details to plan'),
+             ('ul',
+              ['Separate development and production; manage secrets and data access.',
+               'Detect failed notifications and define database backup and restore procedures.',
+               'Budget hosting, email, file storage, and AI usage together.']),
+             ('references',
+              [('Repository and README', 'https://github.com/YioGoi/core-initiative'),
+               ('Developer onboarding',
+                'https://github.com/YioGoi/core-initiative/blob/main/docs/onboarding.md')])]}]
+
+ARCH = {'width': 510,
+ 'height': 246,
+ 'nodes': [('sites', 0, 10, 146, 43, '7 brand sites', 'Next.js / NL · EN · TR', False),
+           ('api', 182, 10, 146, 43, 'Shared API', 'ASP.NET Core', True),
+           ('db', 364, 10, 146, 43, 'Durable records', 'Database engine open', False),
+           ('phone', 0, 113, 146, 43, 'Phone / email', 'Manual entry in version one', False),
+           ('panel', 182, 113, 146, 43, 'Enquiry dashboard', 'Next.js / team sign-in', False),
+           ('mailjob', 364, 113, 146, 43, 'Notification delivery', 'After recording / retry on failure', False),
+           ('inbox', 364, 198, 146, 43, 'Team inbox', 'Provider open', False)],
+ 'edges': [([(146, 31.5), (182, 31.5)], None),
+           ([(328, 31.5), (364, 31.5)], None),
+           ([(255, 113), (255, 53)], 'authenticated'),
+           ([(146, 134.5), (182, 134.5)], None),
+           ([(437, 53), (437, 113)], 'after recording'),
+           ([(437, 156), (437, 198)], None)]}

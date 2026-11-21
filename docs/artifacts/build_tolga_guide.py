@@ -1,4 +1,4 @@
-"""Build the Turkish collaboration brief as PDF and standalone HTML."""
+"""Build the English collaboration brief as PDF and standalone HTML."""
 from pathlib import Path
 import html
 import math
@@ -12,8 +12,8 @@ from reportlab.platypus import Paragraph, Table, TableStyle
 from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parents[2]
-PDF = ROOT / 'output/pdf/core-initiative-tolga-rehberi.pdf'
-HTML = ROOT / 'output/html/core-initiative-tolga-rehberi.html'
+PDF = ROOT / 'output/pdf/core-initiative-tolga-guide.pdf'
+HTML = ROOT / 'output/html/core-initiative-tolga-guide.html'
 FONTS = Path('/Users/ydogan/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/libreoffice-headless/libreoffice/LibreOfficeDev.app/Contents/Resources/fonts/truetype')
 for name, file in [('Guide', 'NotoSans-Regular.ttf'), ('GuideBold', 'NotoSans-Bold.ttf')]:
     pdfmetrics.registerFont(TTFont(name, str(FONTS / file)))
@@ -117,7 +117,7 @@ def architecture_pdf(c, y):
     return y-ARCH['height']*scale-10
 
 def architecture_svg():
-    svg = ['<svg class="architecture" viewBox="0 0 510 246" role="img" aria-label="Yedi Next.js sitesi ortak ASP.NET Core API üzerinden kayıt oluşturur. Ekip panosu aynı API’ye yetkili erişir; bildirimler kayıttan sonra gönderilir.">',
+    svg = ['<svg class="architecture" viewBox="0 0 510 246" role="img" aria-label="Seven Next.js sites create records through a shared ASP.NET Core API. The authenticated team dashboard uses the same API; notifications follow persistence.">',
            '<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7" fill="none" stroke="#8c9f92"/></marker></defs>']
     for points,label in ARCH['edges']:
         ps=' '.join(f'{x},{y}' for x,y in points)
@@ -176,7 +176,7 @@ def build_pdf():
                 y = architecture_pdf(c,y)
             elif kind == 'brands':
                 rows = [[f'<b>{name}</b><br/><font size="7.6">{domain}</font>', role] for name,domain,role,_ in BRANDS]
-                y = table(c, ['Marka ve adres', 'Odak'], rows, y, [216,CW-216]) - 12
+                y = table(c, ['Brand and address', 'Focus'], rows, y, [216,CW-216]) - 12
             elif kind == 'table':
                 y = table(c, *content, y, [137,CW-137]) - 10
             elif kind == 'note':
@@ -215,7 +215,7 @@ def build_pdf():
         c.line(M,43,W-M,43)
         c.setFillColor(MUTED)
         c.setFont('Guide', 7.5)
-        c.drawString(M,29,'Core Initiative / Karar özeti ve mimari taslak')
+        c.drawString(M,29,'Core Initiative / Decisions and architecture draft')
         c.drawRightString(W-M,29,f'{n} / {len(PAGES)}')
         c.showPage()
         print(f'page {n}: content ends at {y:.1f}pt')
@@ -223,9 +223,9 @@ def build_pdf():
     reader = PdfReader(str(PDF))
     assert len(reader.pages) == len(PAGES)
     text = '\n'.join(p.extract_text() for p in reader.pages)
-    for expected in ['Construct','Cookie','Tool','Agent','Reflection','Spoon','Reply-To','Hollandaca','Tolga','ASP.NET Core','Supabase','Telefon','PostgreSQL']:
+    for expected in ['Construct','Cookie','Tool','Agent','Reflection','Spoon','Reply-To','Dutch','Tolga','ASP.NET Core','Supabase','Phone','PostgreSQL']:
         assert expected in text, expected
-    for removed in ['İstediğin yerden katkı verebilirsin','Bir markayı üstlenirken başlangıç paketi','İlk adım: Bir marka']:
+    for removed in ['Contribute wherever you like','Getting started with a brand','First step: choose a brand']:
         assert removed not in text, removed
     print(f'PDF OK: {PDF} ({len(text)} characters)')
 
@@ -250,7 +250,7 @@ def build_html():
             elif kind == 'flow': parts.append('<div class="flow">'+ '<span aria-hidden="true">→</span>'.join(f'<b>{html.escape(s)}</b>' for s in content)+'</div>')
             elif kind == 'diagram':
                 coords = [(300+175*math.cos(math.radians(90-i*60)),110+75*math.sin(math.radians(90-i*60))) for i in range(6)]
-                svg = ['<svg class="map" viewBox="0 0 600 220" role="img" aria-label="Merkezde Core Initiative ve çevresinde altı uzmanlık markası">']
+                svg = ['<svg class="map" viewBox="0 0 600 220" role="img" aria-label="Core Initiative at the center, surrounded by six specialist brands">']
                 for (name,_,_,color),(x,y) in zip(BRANDS[1:],coords):
                     svg += [f'<path d="M300 110 L{x} {y}" stroke="#dce1d8"/>',f'<rect x="{x-64}" y="{y-17}" width="128" height="34" rx="17" fill="#faf8f2" stroke="{color}"/>',f'<text x="{x}" y="{y+5}" text-anchor="middle" fill="{color}">{name}</text>']
                 svg += ['<rect x="224" y="88" width="152" height="44" rx="22" fill="#203b33"/><text x="300" y="115" text-anchor="middle" fill="#faf8f2">Core Initiative</text></svg>']
@@ -272,7 +272,7 @@ def build_html():
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
     @media print{body{background:white;font-size:10pt}header{margin:0 auto 12px}main{margin:0;max-width:none}section{margin:0;padding:18px 0;box-shadow:none;border-radius:0;break-after:page}section:last-child{break-after:auto}h1{font-size:25pt}h2{font-size:13pt}.lead{font-size:12pt}table{font-size:9pt}aside{font-size:9pt}th,td{padding:8px}footer{display:none}a{color:inherit}.map{max-height:160px}}
     '''
-    document = f'<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Core Initiative - {SUBTITLE}</title><style>{CSS}</style></head><body><header><strong>CORE INITIATIVE</strong><span>{SUBTITLE} · {DATE}</span></header><main>{"".join(sections)}</main><footer>Core Initiative / Karar özeti ve mimari taslak</footer></body></html>'
+    document = f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Core Initiative - {SUBTITLE}</title><style>{CSS}</style></head><body><header><strong>CORE INITIATIVE</strong><span>{SUBTITLE} · {DATE}</span></header><main>{"".join(sections)}</main><footer>Core Initiative / Decisions and architecture draft</footer></body></html>'
     HTML.parent.mkdir(parents=True, exist_ok=True)
     HTML.write_text(document,encoding='utf-8')
     print(f'HTML OK: {HTML}')

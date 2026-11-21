@@ -1,33 +1,37 @@
-# Kısa başlangıç rehberi
+# Quick onboarding
 
-Repo kökündeki `README.md` ile başla. Node ve pnpm kuruluysa `pnpm install --frozen-lockfile` ardından `pnpm dev`, iki uygulamayı birlikte açar.
+Start with the root `README.md`. With Node and pnpm installed, run `pnpm install --frozen-lockfile`, then `pnpm dev` to start both applications.
 
-## İlk bakılacak dosyalar
+## Files to explore first
 
-| Dosya | Ne var? |
+| File | Purpose |
 | --- | --- |
-| `common/config/index.ts` | Yedi markanın adları, hedef adresleri ve üç dil |
-| `core-initiative-site/src/config/site.ts` | Core'un site kimliği ve adresi |
-| `construct-site/src/config/site.ts` | Construct'ın site kimliği ve adresi |
-| Her uygulamada `src/app/[locale]/page.tsx` | Stilsiz başlangıç sayfası |
-| Her uygulamada `src/app/[locale]/layout.tsx` | Next.js'in zorunlu HTML/body kabuğu ve dil |
+| `common/config/index.ts` | Seven brands, target origins, and three locales |
+| `core-initiative-site/src/config/site.ts` | Core's site identity and origin |
+| `construct-site/src/config/site.ts` | Construct's site identity and origin |
+| `src/app/[locale]/page.tsx` in each application | Unstyled starter page |
+| `src/app/[locale]/layout.tsx` in each application | Required Next.js HTML/body shell and document language |
 
-## Bu commit'in kapsamı
+## Current scope
 
-- Core ve Construct ayrı çalışır, ayrı derlenir.
-- Varsayılan dil Hollandaca; İngilizce ve Türkçe yolları da çalışır.
-- Başlangıç sayfalarında yalnızca marka adı ve kısa açıklama var.
-- Ortak bileşenlerin hedef klasörü `common/component/`. Form elemanları ve style guide'lar sonraki iş.
-- Ortak backend için ASP.NET Core kararı var. Backend henüz oluşturulmadı; bu sürümü açmak için .NET veya veritabanı gerekmiyor.
+- Core and Construct run and build independently.
+- Dutch is the default language; English and Turkish routes also work.
+- Starter pages contain the brand name and a short introduction.
+- Shared components will live in `common/component/`. Form elements and style guides come later.
+- ASP.NET Core is the agreed backend technology. Backend implementation has not started; .NET and a database are not required to run this version.
 
-## Yerel ayarlar
+## Local configuration
 
-Ortam değişkenleri isteğe bağlı. Örneğin Core'da `.env.example` dosyasını aynı klasörde `.env.local` adıyla kopyalayabilirsin. `NEXT_PUBLIC_SITE_ORIGIN`, o uygulamanın metadata adresini belirler; hiçbir özel anahtar içermez.
+Environment variables are optional. For example, copy Core's `.env.example` to `.env.local` in the same directory. `NEXT_PUBLIC_SITE_ORIGIN` sets the origin used in that application's metadata; it contains no secret.
 
-Her uygulamada değişiklik kendi klasöründe yapılır. Ortak marka/dil bilgisi `common/config` içinde tutulur. Kod değişikliğinden sonra kökten `pnpm check` çalıştırılır.
+Make application changes in the relevant site directory. Shared brand and locale definitions live in `common/config`. Run `pnpm check` from the repository root after code changes.
 
-## Yayın sınırları
+## Deployment boundaries
 
-İki site aynı repoda olsa da yayın platformunda ayrı proje olarak seçilebilir. Proje kökü ilgili uygulama klasörü olur; kurulum kökteki workspace ve lockfile üzerinden yapılır. `common/` ortak bağımlılığı derlemeye dahildir.
+The sites share a repository but can use separate deployment projects. Select the relevant application directory as the project root; installation uses the root workspace and lockfile. The shared `common/` dependency is included in the build.
 
-Bu commit GitHub'a kaynak kod paylaşımı içindir. Domain, DNS ve canlı yayın bağlantıları henüz kurulmadı.
+This starter is ready for source collaboration on GitHub. Domain, DNS, and production deployment connections have not been configured yet.
+
+## Language convention
+
+Keep documentation, comments, and development guidance in English. Dutch and Turkish website translations remain in their locale dictionaries.

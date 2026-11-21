@@ -1,12 +1,12 @@
 # Core Initiative
 
-Core Initiative ve alt markaları için başlangıç monoreposu. Her site ayrı bir Next.js uygulaması ve bağımsız yayınlanabilir. Ortak kodun başlangıcı `common/` altında.
+Starter monorepo for Core Initiative and its specialist brands. Each site is a separate Next.js application that can be deployed independently. Shared code starts in `common/`.
 
-Bu ilk sürüm çalıştırılabilir teknik iskelet. Görsel layout, style guide ve form/backend uygulaması sonraki aşamada.
+This first version is a runnable technical foundation. Visual layouts, style guides, forms, and backend implementation come next.
 
-## Yerelde başlat
+## Run locally
 
-Node.js 24 ve pnpm 10.28.2 kullanıyoruz. Node sürümü `.nvmrc`, pnpm sürümü `package.json` içinde sabit.
+We use Node.js 24 and pnpm 10.28.2. The Node version is pinned in `.nvmrc`; the pnpm version is pinned in `package.json`.
 
 ```sh
 nvm use
@@ -15,50 +15,54 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-pnpm zaten kuruluysa global kurulum adımını atlayabilirsin. nvm kullanmıyorsan Node.js 24 kurulu olması yeterli.
+Skip the global installation step if pnpm is already installed. If you do not use nvm, install Node.js 24 directly.
 
-| Uygulama | Yerel adres | Klasör |
+| Application | Local URL | Directory |
 | --- | --- | --- |
 | Core Initiative | http://localhost:3000/nl | `core-initiative-site/` |
 | Construct | http://localhost:3001/nl | `construct-site/` |
 
-İkisinde de `/nl`, `/en`, `/tr` yolları hazır. `/`, varsayılan `/nl` adresine yönlenir. Başlangıç için ortam değişkeni veya servis hesabı gerekmiyor; her uygulamanın `.env.example` dosyası kendi site adresini nasıl değiştireceğini gösteriyor.
+Both applications support `/nl`, `/en`, and `/tr`. The root URL redirects to the default `/nl` route. No environment variables or service accounts are required to get started. Each application's `.env.example` shows how to override its site origin.
 
-## Repo haritası
+## Repository map
 
 ```text
 core-initiative/
-├── core-initiative-site/  # Çatı sitenin Next.js iskeleti
-├── construct-site/       # Web & e-commerce markasının Next.js iskeleti
+├── core-initiative-site/  # Umbrella site's Next.js starter
+├── construct-site/       # Web and e-commerce brand's Next.js starter
 ├── common/
-│   ├── config/           # Marka listesi ve dil tanımları
-│   └── component/        # Ortak, stilsiz bileşenlerin ilerideki yeri
+│   ├── config/           # Brand registry and locale definitions
+│   └── component/        # Reserved for shared, unstyled components
 ├── docs/
-│   ├── onboarding.md    # Tolga için kısa başlangıç notları
-│   ├── architecture.md  # Kararlar, sınırlar ve açık konular
-│   └── artifacts/       # PDF/HTML rehberinin kaynakları
-└── output/              # Mevcut PDF ve HTML rehberi
+│   ├── onboarding.md     # Quick orientation for Tolga
+│   ├── architecture.md   # Decisions, boundaries, and open questions
+│   └── artifacts/        # Source files for the PDF and HTML brief
+└── output/               # Generated PDF and HTML brief
 ```
 
-Diğer markalar: Cookie, Tool, Agent, Reflection ve Spoon. İsimleri ortak config içinde; uygulama klasörleri henüz açılmadı.
+The other brands are Cookie, Tool, Agent, Reflection, and Spoon. They are registered in the shared config; their application directories have not been created yet.
 
-## Komutlar
+## Commands
 
 ```sh
-pnpm dev:core       # Yalnızca Core
-pnpm dev:construct  # Yalnızca Construct
-pnpm typecheck     # Ortak config ve iki sitenin TypeScript kontrolü
-pnpm build         # İki sitenin üretim derlemesi
-pnpm check         # TypeScript kontrolü + üretim derlemeleri
+pnpm dev:core       # Run Core only
+pnpm dev:construct  # Run Construct only
+pnpm typecheck      # Type-check the shared config and both sites
+pnpm build          # Build both sites for production
+pnpm check          # Run type checks and production builds
 ```
 
-Her site ortak config'i `@core-initiative/common/config` üzerinden kullanır. `common/component/` şimdilik yer ayrılmış bir klasördür; henüz form bileşeni veya stil sistemi seçilmedi.
+Each site imports the shared config from `@core-initiative/common/config`. The `common/component/` directory is reserved for future work; no form components or styling system have been implemented yet.
 
-## Buradan devam
+## Repository language
 
-- [Kısa başlangıç rehberi](docs/onboarding.md)
-- [Mimari ve açık kararlar](docs/architecture.md)
-- [Mevcut PDF rehberi](output/pdf/core-initiative-tolga-rehberi.pdf)
-- [Mevcut HTML rehberi](output/html/core-initiative-tolga-rehberi.html)
+Write documentation, code comments, and development guidance in English. Website copy belongs in locale dictionaries and supports Dutch, English, and Turkish.
 
-PDF/HTML, önceki mimari görüşmelerinin özeti. Repo düzeni ve çalıştırma komutları için bu README güncel kaynak.
+## Further reading
+
+- [Quick onboarding](docs/onboarding.md)
+- [Architecture and open decisions](docs/architecture.md)
+- [PDF brief](output/pdf/core-initiative-tolga-guide.pdf)
+- [HTML brief](output/html/core-initiative-tolga-guide.html)
+
+The PDF and HTML brief summarize the project direction. This README is the current reference for repository structure and run commands.

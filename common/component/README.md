@@ -1,7 +1,7 @@
-# Ortak bileşenler
+# Shared components
 
-Stilsiz form elemanlarının ve gerçekten ortak davranışların hedef klasörü. Bu başlangıç commit'inde bileşen uygulaması yok.
+Reserved for unstyled form elements and shared behavior. No components are implemented in this starter.
 
-İleride burada geliştirilen bileşenler `@core-initiative/common/component` export'u üzerinden tüketilebilir. Bu export, ilk bileşenler oluşturulduğunda eklenecek.
+Future components can be consumed through an `@core-initiative/common/component` export. Add that export when the first components are implemented.
 
-Markalara ait fontlar, renkler, boşluklar, gölgeler ve hareket dili ilgili sitenin style guide'ında kalır.
+Brand fonts, colors, spacing, shadows, and motion remain part of each site's style guide.
