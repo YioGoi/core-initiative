@@ -1,0 +1,7 @@
+packages:
+  - core-initiative-site
+  - construct-site
+  - common
+
+onlyBuiltDependencies:
+  - sharp

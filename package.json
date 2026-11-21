@@ -1,0 +1,15 @@
+{
+  "name": "core-initiative",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.28.2",
+  "engines": { "node": ">=20.9.0" },
+  "scripts": {
+    "dev": "pnpm --parallel --filter '*-site' run dev",
+    "dev:core": "pnpm --filter core-initiative-site dev",
+    "dev:construct": "pnpm --filter construct-site dev",
+    "typecheck": "pnpm -r run typecheck",
+    "build": "pnpm -r --workspace-concurrency=1 --if-present run build",
+    "check": "pnpm typecheck && pnpm build"
+  }
+}
