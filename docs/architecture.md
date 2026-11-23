@@ -40,6 +40,6 @@ These can be introduced as actual requirements emerge. Supabase is not part of t
 
 Each brand controls its fonts, palette, spacing, composition and motion. A shared origin and specialist relationships connect the sites. The seven brand definitions are navigation/configuration data, not seven deployed applications.
 
-Mind Palace and AI Team link to their actual portfolio entries with attribution to their maker. The fictional ceramics concept is labelled separately from real products.
+Mind Palace and AI Team link to their actual portfolio entries with attribution to their maker. The fictional ceramics and instrument concepts are labelled separately from real products.
 
-Canonical URLs, reciprocal language alternates, Open Graph text, website structured data, robots and the sitemap are implemented in Construct. Visibility measurement and original service content remain ongoing work; connecting the brands is not treated as a ranking guarantee.
+Canonical URLs, reciprocal language alternates, localized sharing cards, WebSite/WebPage structured data, robots and the sitemap are implemented in Construct. Visibility measurement and original service content remain ongoing work; connecting the brands is not treated as a ranking guarantee.

@@ -13,8 +13,8 @@ Open http://localhost:3001/nl. English and Turkish are available at `/en` and `/
 ## First tour
 
 1. Read the first screen and service sections to see Construct's offering.
-2. Scroll through the square unfolding into layers and its later connection to the seven-circle Core family.
-3. Open the family descriptions and portfolio links. The ceramics example is a labelled fictional concept, not a customer case study.
+2. Scroll through the layered atelier and the instrument commerce scene, where a listening chamber expands and collapses before the square joins the seven-circle Core family.
+3. Open the family descriptions and portfolio links. The ceramics and instrument examples are labelled fictional concepts, not customer case studies.
 4. At the bottom, keep scrolling down to reveal the moving particle field. Release to let the footer spring back. Upward scrolling stays native. Touch and keyboard gestures are supported; reduced-motion preferences disable the effect.
 5. Try the contact form. Without configuration it previews and copies a message. With an address configured it opens an email draft. Neither mode submits to a server.
 

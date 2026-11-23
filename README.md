@@ -4,7 +4,7 @@ A monorepo for independently deployable brand sites. Core Initiative connects si
 
 ## Current state
 
-- **Construct:** a working, multilingual web studio frontend with two scroll scenes, a ceramics concept study, a Core family directory and an elastic particle reveal beneath the footer.
+- **Construct:** a working, multilingual web studio frontend with a layered ceramics scroll scene, an immersive instrument e-commerce concept, a Core family directory and an elastic particle reveal beneath the footer.
 - **Core Initiative:** an unstyled Next.js starter.
 - **Other brands:** registered in shared configuration; their applications have not been created.
 - **Contact:** Construct opens an email draft when an address is configured. Without it, the form offers a local message preview and copy action. It does not send or store submissions.

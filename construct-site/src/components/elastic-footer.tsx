@@ -23,7 +23,8 @@ export function ElasticFooter({ children }: { children: ReactNode }) {
     let width = 1, height = 1, maxPull = 240;
     let position = 0, velocity = 0, target = 0, distance = 0;
     let anchor = .5, anchorTarget = .5;
-    let frame = 0, previousTime = 0, releaseTimer = 0;
+    let frame = 0, previousTime = 0, releaseTimer = 0, automaticTimer = 0;
+    let automaticReveal = false, bottomSeen = false, automaticReveals = 0;
     let touchY: number | null = null;
     let particles: Particle[] = [];
 
@@ -101,6 +102,7 @@ export function ElasticFooter({ children }: { children: ReactNode }) {
 
     function release() {
       window.clearTimeout(releaseTimer);
+      if (automaticReveal && atEnd()) return;
       target = 0;
       distance = 0;
       if (position !== 0 || velocity !== 0) {
@@ -109,7 +111,35 @@ export function ElasticFooter({ children }: { children: ReactNode }) {
       }
     }
 
+    function cancelAutomaticReveal() {
+      window.clearTimeout(automaticTimer);
+      automaticTimer = 0;
+      automaticReveal = false;
+    }
+
+    function releaseImmediately() {
+      cancelAutomaticReveal();
+      release();
+    }
+
+    function revealOnArrival() {
+      if (automaticReveal || reduced.matches || document.hidden) return;
+      window.clearTimeout(releaseTimer);
+      automaticReveal = true;
+      target = maxPull * .82;
+      distance = -maxPull * 1.15 * Math.log(1 - .82);
+      anchorTarget = .5;
+      root!.dataset.phase = "auto-reveal";
+      root!.dataset.autoReveals = String(++automaticReveals);
+      requestFrame();
+      automaticTimer = window.setTimeout(() => {
+        cancelAutomaticReveal();
+        release();
+      }, 1100);
+    }
+
     function reset() {
+      cancelAutomaticReveal();
       cancelAnimationFrame(frame);
       window.clearTimeout(releaseTimer);
       frame = 0;
@@ -143,7 +173,7 @@ export function ElasticFooter({ children }: { children: ReactNode }) {
     function wheel(event: WheelEvent) {
       if (event.ctrlKey || event.metaKey || reduced.matches || editable(event.target)) return;
       if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
-      if (event.deltaY <= 0 || !atEnd()) { release(); return; }
+      if (event.deltaY <= 0 || !atEnd()) { releaseImmediately(); return; }
       if (!event.cancelable || nestedCanScroll(event.target, event.deltaY)) return;
       event.preventDefault();
       const units = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1;
@@ -162,7 +192,7 @@ export function ElasticFooter({ children }: { children: ReactNode }) {
       const touch = event.touches[0];
       const delta = touchY - touch.clientY;
       touchY = touch.clientY;
-      if (delta <= 0 || !atEnd()) { release(); return; }
+      if (delta <= 0 || !atEnd()) { releaseImmediately(); return; }
       if (!event.cancelable || nestedCanScroll(event.target, delta)) return;
       event.preventDefault();
       pullBy(delta * 1.15, touch.clientX);
@@ -174,7 +204,7 @@ export function ElasticFooter({ children }: { children: ReactNode }) {
       if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey || event.shiftKey
         || reduced.matches || editable(event.target)) return;
       if (event.target instanceof Element && event.target.closest("button,summary")) return;
-      if (event.key === "ArrowUp" || event.key === "PageUp" || event.key === "Home") { release(); return; }
+      if (event.key === "ArrowUp" || event.key === "PageUp" || event.key === "Home") { releaseImmediately(); return; }
       if (!["ArrowDown", "PageDown", " "].includes(event.key) || !atEnd()) return;
       event.preventDefault();
       pullBy(event.key === "ArrowDown" ? 85 : 250, window.innerWidth / 2);
@@ -184,8 +214,16 @@ export function ElasticFooter({ children }: { children: ReactNode }) {
 
     function syncBoundary() {
       // Suppress native bottom rubber-banding only where our custom gesture takes over.
-      page.classList.toggle("footer-overscroll-boundary", atEnd() && !reduced.matches);
-      if (!atEnd()) release();
+      const end = atEnd();
+      page.classList.toggle("footer-overscroll-boundary", end && !reduced.matches);
+      if (!end) {
+        releaseImmediately();
+        // Rearm only after leaving the edge by a meaningful distance.
+        if (page.scrollHeight - window.innerHeight - window.scrollY > 100) bottomSeen = false;
+      } else if (!bottomSeen && !reduced.matches && !document.hidden) {
+        bottomSeen = true;
+        revealOnArrival();
+      }
     }
 
     function measure() {
@@ -215,7 +253,7 @@ export function ElasticFooter({ children }: { children: ReactNode }) {
     window.addEventListener("keyup", keyUp);
     window.addEventListener("scroll", syncBoundary, { passive: true });
     window.addEventListener("resize", measure, { passive: true });
-    window.addEventListener("blur", release);
+    window.addEventListener("blur", releaseImmediately);
     document.addEventListener("visibilitychange", visibility);
     reduced.addEventListener("change", measure);
     measure();
@@ -232,13 +270,13 @@ export function ElasticFooter({ children }: { children: ReactNode }) {
       window.removeEventListener("keyup", keyUp);
       window.removeEventListener("scroll", syncBoundary);
       window.removeEventListener("resize", measure);
-      window.removeEventListener("blur", release);
+      window.removeEventListener("blur", releaseImmediately);
       document.removeEventListener("visibilitychange", visibility);
       reduced.removeEventListener("change", measure);
     };
   }, []);
 
-  return <div className="elastic-footer" ref={rootRef} data-phase="idle" data-pull="0" data-active="false">
+  return <div className="elastic-footer" ref={rootRef} data-phase="idle" data-pull="0" data-active="false" data-auto-reveals="0">
     <div className="footer-universe" aria-hidden="true"><canvas ref={canvasRef} /></div>
     <div className="elastic-footer-surface">
       {children}
