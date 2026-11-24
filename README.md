@@ -76,6 +76,8 @@ Each site consumes `@core-initiative/common/config`. Brand-specific styles stay 
 
 ## Development references
 
+Changes go through task branches and reviewed pull requests. Read the [contribution workflow](CONTRIBUTING.md) before starting work.
+
 - [Quick onboarding](docs/onboarding.md)
 - [Architecture and integration boundaries](docs/architecture.md)
 - [Construct implementation, contact setup and image provenance](construct-site/README.md)
