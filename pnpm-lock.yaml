@@ -42,6 +42,34 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
 
+  cookie-site:
+    dependencies:
+      '@core-initiative/common':
+        specifier: workspace:*
+        version: link:../common
+      next:
+        specifier: 16.4.6
+        version: 16.4.6(@types/node@24.19.2)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      react:
+        specifier: 19.3.1
+        version: 19.3.1
+      react-dom:
+        specifier: 19.3.1
+        version: 19.3.1(react@19.3.1)
+    devDependencies:
+      '@types/node':
+        specifier: 24.19.2
+        version: 24.19.2
+      '@types/react':
+        specifier: 19.3.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: 19.3.0
+        version: 19.3.0(@types/react@19.3.0)
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
+
   core-initiative-site:
     dependencies:
       '@core-initiative/common':

@@ -2,14 +2,16 @@
 
 ## Implemented
 
-One monorepo contains independent Next.js applications and shared configuration. Construct has a multilingual web studio frontend; Core remains an unstyled starter. Other brand applications have not been created.
+One monorepo contains independent Next.js applications and shared configuration. Construct has a multilingual web studio frontend; Cookie has a multilingual design studio concept; Core remains an unstyled starter. Other brand applications have not been created.
 
-The page and scene markup are server-rendered. Small client components enhance scrolling, the elastic footer and the contact form. Construct owns its design tokens and local components. Native scrolling, reduced-motion support and cleanup of animation/input handlers are part of the current implementation.
+The page and scene markup are server-rendered. Small client components enhance scrolling, the elastic footer and the contact forms. Each brand owns its design tokens and local components. Native scrolling, reduced-motion support and cleanup of animation/input handlers are part of the current implementation. Cookie's design boards and colour-to-interface transition have static alternatives for mobile, short viewports and enlarged text.
 
 ```mermaid
 flowchart TD
     Core["Core / Next.js starter"] --> Config["common/config / brands and locales"]
     Construct["Construct / Next.js frontend"] --> Config
+    Cookie["Cookie / Next.js design studio"] --> Config
+    Cookie --> CookiePreview["Local message preview / current"]
     Construct --> Form["Contact form / implemented"]
     Form --> Draft["Email draft or local preview / current"]
     Form -. "Future API integration" .-> API["Shared ASP.NET Core contact API / planned"]
@@ -42,4 +44,4 @@ Each brand controls its fonts, palette, spacing, composition and motion. A share
 
 Mind Palace and AI Team link to their actual portfolio entries with attribution to their maker. The fictional ceramics and instrument concepts are labelled separately from real products.
 
-Canonical URLs, reciprocal language alternates, localized sharing cards, WebSite/WebPage structured data, robots and the sitemap are implemented in Construct. Visibility measurement and original service content remain ongoing work; connecting the brands is not treated as a ranking guarantee.
+Canonical URLs, reciprocal language alternates, localized sharing cards, WebSite/WebPage structured data, robots and the sitemap are implemented in Construct and Cookie. Visibility measurement and original service content remain ongoing work; connecting the brands is not treated as a ranking guarantee.

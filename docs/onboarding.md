@@ -10,6 +10,8 @@ pnpm dev:construct
 
 Open http://localhost:3001/nl. English and Turkish are available at `/en` and `/tr`. The frontend runs without .NET, a database or external service accounts.
 
+For Cookie's independent design studio concept, run `pnpm dev:cookie` and open http://localhost:3002/nl. See the [Cookie guide](../cookie-site/README.md) for its two motion scenes, locale copy, assets and local contact preview.
+
 ## First tour
 
 1. Read the first screen and service sections to see Construct's offering.
