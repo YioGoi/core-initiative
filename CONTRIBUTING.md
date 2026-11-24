@@ -33,21 +33,29 @@ Keep the branch up to date with `main`. Resolve conflicts and rerun relevant val
 
 ## Review and merge
 
-Every PR requires approval from at least one other human collaborator with write access. The author cannot approve their own PR. Automated checks and AI-assisted reviews support the reviewer; they do not replace that approval.
+### Current phase: one maintainer
 
-The reviewer should inspect the latest diff, verify the intended behavior and relevant checks, and raise actionable questions. Use Request changes when a change needs correction. Resolve review conversations before merging.
+Until a second human collaborator has write access and the shared review workflow is activated, independent approval is optional. The PR author can merge their own PR after the required checks pass and review conversations are resolved. No separate owner approval is required during this phase.
 
-New changes invalidate earlier approvals. Request review again after updating the PR.
+### Shared review phase
+
+Before starting shared development, set the required approval count on `main` to **1** and update this guide to mark that phase active. This is a manual transition; adding a collaborator does not automatically change branch protection.
+
+Once activated, every PR requires approval from at least one other human collaborator with write access. The author cannot approve their own PR. Automated checks and AI-assisted reviews support the reviewer; they do not replace that approval. New changes invalidate earlier approvals, so request review again after updating the PR. A PR remains open when the required reviewer is unavailable.
+
+The reviewer should inspect the latest diff, verify the intended behavior and relevant checks, and raise actionable questions. Use Request changes when a change needs correction.
+
+### Merge requirements in both phases
 
 Merge only when:
 
-1. An independent human reviewer has approved the current change.
-2. The GitHub Actions `check` job has passed and the branch is up to date with `main`.
-3. All review conversations have been resolved.
+1. The GitHub Actions `check` job has passed and the branch is up to date with `main`.
+2. All review conversations have been resolved.
+3. Any approval required by the active phase has been received.
 
 Use **Squash and merge**, then delete the task branch. The resulting commit should describe the complete change. Start the next task from the updated `main`.
 
-`main` requires pull requests, independent approval, status checks, and conversation resolution. These requirements apply to administrators too. Direct pushes, force pushes, branch deletion, and bypassing review to finish a task are not part of this workflow. A PR remains open when another reviewer is unavailable.
+`main` requires pull requests, status checks, and conversation resolution. These requirements apply to administrators too. Direct pushes, force pushes, deletion of `main`, and bypassing protection to finish a task are not part of this workflow.
 
 ## Validation
 

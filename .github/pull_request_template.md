@@ -14,4 +14,4 @@ Call out anything the reviewer should focus on, including setup changes, integra
 - [ ] Relevant checks are complete; application or shared-config changes pass `pnpm check`.
 - [ ] No secrets, local environment files, temporary audit assets or private collaboration material are included.
 
-Independent human approval is required before merging. New changes require a fresh review.
+Follow the active review phase in `CONTRIBUTING.md`. Independent approval is optional in the current one-maintainer phase. Once shared review is activated, another human collaborator must approve and new changes require a fresh review.
