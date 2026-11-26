@@ -47,3 +47,13 @@ The automated scan does not establish full WCAG conformance. Layered photography
 - No claims are made about search rankings, live delivery or production field performance. Petal is explicitly a fictional concept study.
 
 Temporary audit pages and the copied axe script were removed from the application after the review. No audit library was added to application dependencies. Collaboration briefs and their generated PDF/HTML sources were not changed.
+
+## Actions and mobile motion follow-up — 26 November 2026
+
+- Differentiated primary actions with larger italic Fraunces labels and a small leading flower, retaining the existing radii. Petal’s decorative button specimens follow the floral direction.
+- Added mobile card-fan and colour-to-interface motion at heights of at least 600 CSS pixels. Smaller card depth and shorter sticky scenes keep the composition within narrow viewports. Corrected the mobile fan’s containing width so all three boards remain in view.
+- Kept the semantic identity outcome readable throughout its entrance; a small vertical movement replaces the low-contrast text fade detected in the mobile scene scan.
+- Measured progress against actual sticky-stage height, preserving alignment with small viewport units. Reduced motion, short viewports and enlarged base text retain static alternatives.
+- Re-ran axe-core 4.14.1: no reported violations, 48 passed rules in each NL/EN/TR standard page and each 320px / 200% base-text case. No horizontal overflow or clipped semantic text in those enlarged-text checks. Transformed/decorative compositions still require manual contrast assessment.
+- Rechecked localized metadata, social images, JSON-LD, canonical/hreflang links, root redirect and unsupported locale responses through HTTP. No metadata or backend behavior was removed by the visual changes.
+- Workspace checks are recorded with the accompanying [Tool frontend review](../tool-site/REVIEW.md).

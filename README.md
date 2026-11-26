@@ -7,8 +7,9 @@ A monorepo for independently deployable brand sites. Core Initiative connects si
 - **Construct:** a working, multilingual web studio frontend with a layered ceramics scroll scene, an immersive instrument e-commerce concept, a Core family directory and an elastic particle reveal beneath the footer.
 - **Core Initiative:** an unstyled Next.js starter.
 - **Cookie:** a multilingual design studio concept with its own typography, tactile brand study and two scroll-driven transitions.
+- **Tool:** a local software and systems studio prototype with a phase instrument, an assembling workflow and layered architecture motion.
 - **Other brands:** registered in shared configuration; their applications have not been created.
-- **Contact:** Construct and Cookie open an email draft when an address is configured. Without it, the forms offer a local message preview and copy action. They do not send or store submissions.
+- **Contact:** Construct, Cookie and Tool open an email draft when an address is configured. Without it, the forms offer a local message preview and copy action. They do not send or store submissions.
 - **Backend:** a shared ASP.NET Core contact service is the next integration. It is not implemented. No database or dashboard is required for the current frontend.
 - **Deployment:** local development and production builds work. Production hosting and DNS connections are not configured in this repository.
 
@@ -32,6 +33,7 @@ Skip the global installation if pnpm is already installed. You can use Node.js 2
 | Core Initiative | http://localhost:3000/nl | `core-initiative-site/` |
 | Construct | http://localhost:3001/nl | `construct-site/` |
 | Cookie | http://localhost:3002/nl | `cookie-site/` |
+| Tool | http://localhost:3003/nl | `tool-site/` |
 
 All applications support `/nl`, `/en` and `/tr`; `/` redirects to Dutch. No external accounts or environment variables are required to start. For optional configuration, copy the relevant application's `.env.example` to `.env.local`. Local environment files are ignored by Git.
 
@@ -42,6 +44,7 @@ pnpm dev            # Run all sites
 pnpm dev:core       # Run Core only
 pnpm dev:construct  # Run Construct only
 pnpm dev:cookie     # Run Cookie only
+pnpm dev:tool       # Run Tool only
 pnpm typecheck      # Type-check shared config and all sites
 pnpm build          # Build all sites for production
 pnpm check          # Type checks and production builds
@@ -54,6 +57,7 @@ core-initiative/
 ├── core-initiative-site/  # Umbrella site starter
 ├── construct-site/       # Web studio implementation and brand-specific components
 ├── cookie-site/          # Design studio concept and independent motion language
+├── tool-site/            # Software studio prototype and phase/depth motion studies
 ├── common/
 │   ├── config/           # Brand registry and locale definitions
 │   └── component/        # Reserved for future unstyled shared components
@@ -82,6 +86,7 @@ Changes go through task branches and reviewed pull requests. Read the [contribut
 - [Architecture and integration boundaries](docs/architecture.md)
 - [Construct implementation, contact setup and image provenance](construct-site/README.md)
 - [Cookie concept, motion behavior and asset provenance](cookie-site/README.md)
+- [Tool prototype, motion direction and local setup](tool-site/README.md)
 
 Current collaboration briefs are shared separately. Historical generated snapshots under `output/` are not the current setup reference.
 

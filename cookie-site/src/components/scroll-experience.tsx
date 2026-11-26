@@ -22,6 +22,8 @@ export function ScrollExperience() {
     const component = digital.querySelector<HTMLElement>(".floating-component");
     let frame = 0;
     let enabled = false;
+    let mobile = false;
+    let sceneHeight = innerHeight;
     let identityTop = 0;
     let digitalTop = 0;
     let identityLength = 1;
@@ -53,6 +55,8 @@ export function ScrollExperience() {
         const opening = smoother(segment(p, i === 2 ? .16 : .09, i === 2 ? .81 : .74));
         const arc = Math.sin(opening * Math.PI);
         const x = direction * cardWidth * (.055 + opening * 1.045);
+        const mobileScale = mobile ? 1.35 - opening * .35 : 1;
+        const depthScale = mobile ? .55 : 1;
         const y = i === 1 ? -lift * 13 - Math.sin(p * Math.PI) * 5 : 12 - arc * 33 + opening * 3;
         const z = i === 1
           ? 32 + lift * 44 - settle * 50
@@ -60,7 +64,7 @@ export function ScrollExperience() {
         const rotateX = i === 1 ? 5 - lift * 9 + settle * 5 : 9 - opening * 6 - arc * 5;
         const rotateY = i === 1 ? -4 + lift * 7 - settle * 3 : -direction * (11 + arc * 9 - settle * 5);
         const rotateZ = direction * (6 + arc * 8 + opening * 2 - settle * 2);
-        panel.style.transform = `translate(-50%, -50%) translate3d(${x}px,${y}px,${z}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
+        panel.style.transform = `translate(-50%, -50%) translate3d(${x}px,${y * (mobile ? .65 : 1)}px,${z * depthScale}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) scale(${mobileScale})`;
       });
       if (photograph) {
         const drift = smoother(segment(p, .05, .92));
@@ -85,15 +89,16 @@ export function ScrollExperience() {
       }
       // Clip the light text to the same circle as the ink, preserving contrast throughout the reveal.
       const radius = Math.min(innerWidth, innerHeight) * .15 * (.4 + bloom * 12);
-      digital!.style.setProperty("--heading-clip", `circle(${radius}px at ${innerWidth / 2}px ${innerHeight / 2 - headingTop}px)`);
-      digital!.style.setProperty("--caption-clip", `circle(${radius}px at ${innerWidth / 2}px ${innerHeight / 2 - captionTop}px)`);
+      digital!.style.setProperty("--heading-clip", `circle(${radius}px at ${innerWidth / 2}px ${sceneHeight / 2 - headingTop}px)`);
+      digital!.style.setProperty("--caption-clip", `circle(${radius}px at ${innerWidth / 2}px ${sceneHeight / 2 - captionTop}px)`);
       if (Math.abs(target - identityProgress) > .0001) frame = requestAnimationFrame(draw);
       else previousTime = 0;
     }
 
     function requestDraw() { if (!frame && enabled && !document.hidden) frame = requestAnimationFrame(draw); }
     function measure() {
-      enabled = !reduced.matches && innerWidth >= 761 && innerHeight >= 700 && parseFloat(getComputedStyle(root).fontSize) <= 20;
+      mobile = innerWidth <= 760;
+      enabled = !reduced.matches && innerHeight >= 600 && parseFloat(getComputedStyle(root).fontSize) <= 20;
       root.classList.toggle("motion-on", enabled);
       root.classList.toggle("large-text", parseFloat(getComputedStyle(root).fontSize) > 20);
       cancelAnimationFrame(frame);
@@ -101,8 +106,9 @@ export function ScrollExperience() {
       previousTime = 0;
       identityTop = identity!.getBoundingClientRect().top + scrollY;
       digitalTop = digital!.getBoundingClientRect().top + scrollY;
-      identityLength = Math.max(1, identity!.offsetHeight - innerHeight);
-      digitalLength = Math.max(1, digital!.offsetHeight - innerHeight);
+      identityLength = Math.max(1, identity!.offsetHeight - (identity!.querySelector<HTMLElement>(".scene-stage")?.offsetHeight || innerHeight));
+      sceneHeight = digital!.querySelector<HTMLElement>(".scene-stage")?.offsetHeight || innerHeight;
+      digitalLength = Math.max(1, digital!.offsetHeight - sceneHeight);
       cardWidth = panels[0]?.offsetWidth || 1;
       headingTop = digital!.querySelector<HTMLElement>(".scene-heading")?.offsetTop || 45;
       captionTop = digital!.querySelector<HTMLElement>(".scene-caption")?.offsetTop || 0;

@@ -12,6 +12,8 @@ Open http://localhost:3001/nl. English and Turkish are available at `/en` and `/
 
 For Cookie's independent design studio concept, run `pnpm dev:cookie` and open http://localhost:3002/nl. See the [Cookie guide](../cookie-site/README.md) for its two motion scenes, locale copy, assets and local contact preview.
 
+For Tool’s software and systems studio, run `pnpm dev:tool` and open http://localhost:3003/nl. Its [guide](../tool-site/README.md) covers the phase instrument, mobile workflow, depth study and local contact preview.
+
 Before starting a task, read the [contribution workflow](../CONTRIBUTING.md). Work on a task branch and open a PR to `main`. In the current one-maintainer phase, the author can merge after required checks pass and review conversations are resolved. Once shared review is activated, a different human collaborator must approve it before merge.
 
 ## First tour
