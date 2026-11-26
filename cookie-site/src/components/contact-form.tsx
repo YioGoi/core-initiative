@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import type { CookieCopy } from "@/lib/content";
-import { Arrow } from "./marks";
+import { Flower } from "./marks";
 
 export function ContactForm({ copy, locale }: { copy: CookieCopy["contact"]; locale: string }) {
   const [ready, setReady] = useState(false);
@@ -11,7 +11,7 @@ export function ContactForm({ copy, locale }: { copy: CookieCopy["contact"]; loc
   useEffect(() => { setReady(true); }, []);
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState("");
-  const previewRef = useRef<HTMLDivElement>(null);
+  const previewRef = useRef<HTMLElement>(null);
   const recipient = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim();
 
   function submit(event: FormEvent<HTMLFormElement>) {
@@ -43,8 +43,8 @@ export function ContactForm({ copy, locale }: { copy: CookieCopy["contact"]; loc
       <label>{copy.email}<input name="email" type="email" autoComplete="email" required maxLength={254} /></label>
     </div>
     <label>{copy.message}<textarea name="idea" onInput={(event) => event.currentTarget.setCustomValidity("")} required minLength={10} maxLength={5000} rows={3} placeholder={copy.placeholder} /></label>
-    <div className="form-bottom"><button className="button button-cream" type="submit" disabled={!ready}>{recipient ? copy.compose : copy.preview}<Arrow /></button><p className="form-note" id={noteId}>{recipient ? copy.draftNote : copy.note}</p></div>
+    <div className="form-bottom"><button className="button button-cream" type="submit" disabled={!ready}><Flower /><span>{recipient ? copy.compose : copy.preview}</span></button><p className="form-note" id={noteId}>{recipient ? copy.draftNote : copy.note}</p></div>
     <noscript><p className="form-note">{copy.noScript}</p></noscript>
-    {message && <section className="message-preview" ref={previewRef} tabIndex={-1} aria-labelledby={resultId}><p className="eyebrow" id={resultId}>{copy.result}</p><pre>{message}</pre><button type="button" className="text-link" onClick={copyMessage}>{copy.copy} <Arrow /></button><p role="status">{status}</p></section>}
+    {message && <section className="message-preview" ref={previewRef} tabIndex={-1} aria-labelledby={resultId}><p className="eyebrow" id={resultId}>{copy.result}</p><pre>{message}</pre><button type="button" className="text-link" onClick={copyMessage}><Flower /><span>{copy.copy}</span></button><p role="status">{status}</p></section>}
   </form>;
 }

@@ -2,6 +2,7 @@ packages:
   - core-initiative-site
   - construct-site
   - cookie-site
+  - tool-site
   - common
 
 onlyBuiltDependencies:

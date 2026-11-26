@@ -6,7 +6,7 @@ Write documentation, code comments, identifiers, and development guidance in Eng
 
 ## Current scope
 
-This repository contains the Core, Construct and Cookie Next.js applications and shared configuration. Preserve each brand's independent visual direction. Shared form components are planned under `common/component/`; avoid adding styling or backend features without a task that calls for them.
+This repository contains the Core, Construct, Cookie and Tool Next.js applications and shared configuration. Preserve each brand's independent visual direction. Shared form components are planned under `common/component/`; avoid adding styling or backend features without a task that calls for them.
 
 ## Validation
 

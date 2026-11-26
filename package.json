@@ -9,6 +9,7 @@
     "dev:core": "pnpm --filter core-initiative-site dev",
     "dev:construct": "pnpm --filter construct-site dev",
     "dev:cookie": "pnpm --filter cookie-site dev",
+    "dev:tool": "pnpm --filter tool-site dev",
     "typecheck": "pnpm -r run typecheck",
     "build": "pnpm -r --workspace-concurrency=1 --if-present run build",
     "check": "pnpm typecheck && pnpm build"

@@ -41,7 +41,7 @@ export default async function Page({ params }: Props) {
     <a className="skip-link" href="#main">{c.skip}</a>
     <header className="site-header" id="top">
       <a className="wordmark" href={`/${locale}`} aria-label="Cookie"><Flower /><span>cookie</span></a>
-      <nav className="main-nav" aria-label="Cookie"><a href="#identity">{c.nav.work}</a><a className="approach-link" href="#approach">{c.nav.approach}</a><a href="#contact">{c.nav.contact}<span aria-hidden="true"> ↗</span></a></nav>
+      <nav className="main-nav" aria-label="Cookie"><a href="#identity">{c.nav.work}</a><a className="approach-link" href="#approach">{c.nav.approach}</a><a href="#contact">{c.nav.contact}<Flower className="nav-flower" /></a></nav>
       <LanguageSwitcher locale={locale} label={c.language} />
     </header>
     <main id="main" tabIndex={-1}>
@@ -49,7 +49,7 @@ export default async function Page({ params }: Props) {
         <div className="hero-copy"><p className="eyebrow"><span className="status-dot" /><span>{studioLabel} · <span lang="en">{originLabel}</span></span></p>
           <h1 id="hero-title">{c.hero.line}{" "}<br /><em>{c.hero.emphasis}</em></h1>
           <p className="hero-description">{c.hero.body}</p>
-          <a className="button" href="#contact">{c.hero.cta}<Arrow /></a>
+          <a className="button" href="#contact"><Flower /><span>{c.hero.cta}</span></a>
         </div>
         <figure className="hero-art">
           <div className="hero-photo"><Image src="/images/petal-still-life.png" alt={c.imageAlt} width={1536} height={1024} sizes="(max-width: 760px) 90vw, 48vw" loading="eager" fetchPriority="high" /><span className="photo-word" aria-hidden="true">Petal.</span></div>
@@ -92,8 +92,8 @@ export default async function Page({ params }: Props) {
           <div className="scene-heading scene-heading-on-ink section-shell" aria-hidden="true"><p className="eyebrow">{c.digital.label}</p><div className="scene-title">{c.digital.title}</div></div>
           <div className="prototype-composition" aria-hidden="true">
             <div className="design-label label-left"><span className="selection-dot" />{c.digital.component}</div>
-            <div className="browser-mockup"><div className="browser-toolbar"><span><i /><i /><i /></span><span>petal — digital expression</span><span>↗</span></div><div className="petal-screen"><div className="petal-nav"><span className="petal-brand">Petal.</span><span>{c.digital.screenNav}</span><span>↗</span></div><div className="petal-hero"><div><p className="petal-kicker">{c.digital.screenSmall}</p><p className="petal-title">{c.digital.screenTitle}</p><span className="petal-button">{c.digital.screenCta}<span>↗</span></span></div><div className="petal-image"><Image src="/images/petal-still-life.png" alt="" fill sizes="(max-width: 760px) 50vw, 38vw" /></div></div><div className="petal-bottom"><span>{c.digital.screenBody}</span><Flower /><span>{c.digital.screenFooter}</span></div></div></div>
-            <div className="floating-component"><span className="component-label">Button / Primary</span><span className="petal-button">{c.digital.screenCta}<span>↗</span></span><div className="component-swatches"><i /><i /><i /><span>↳ Petal / UI</span></div></div>
+            <div className="browser-mockup"><div className="browser-toolbar"><span><i /><i /><i /></span><span>petal — digital expression</span><span>↗</span></div><div className="petal-screen"><div className="petal-nav"><span className="petal-brand">Petal.</span><span>{c.digital.screenNav}</span><span>↗</span></div><div className="petal-hero"><div><p className="petal-kicker">{c.digital.screenSmall}</p><p className="petal-title">{c.digital.screenTitle}</p><span className="petal-button"><Flower /><span>{c.digital.screenCta}</span></span></div><div className="petal-image"><Image src="/images/petal-still-life.png" alt="" fill sizes="(max-width: 760px) 50vw, 38vw" /></div></div><div className="petal-bottom"><span>{c.digital.screenBody}</span><Flower /><span>{c.digital.screenFooter}</span></div></div></div>
+            <div className="floating-component"><span className="component-label">Button / Primary</span><span className="petal-button"><Flower /><span>{c.digital.screenCta}</span></span><div className="component-swatches"><i /><i /><i /><span>↳ Petal / UI</span></div></div>
             <span className="design-label label-right">Petal / Prototype · 01</span>
           </div>
           <div className="scene-caption section-shell"><p>{c.digital.body}</p><p className="concept-note">{c.digital.note}</p></div>
